@@ -1,7 +1,10 @@
 h1{
-    margin-top: 10px;
+    margin-bottom: 12px;
 }
-
+.presentation img{
+    height: 68vh;
+    object-fit: cover;
+}
 .principal{
     width: 100%;
     padding: 10px;
@@ -18,17 +21,17 @@ h1{
 }
 .title-1{
     background: #328dd8;
-    padding: 5px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    padding: 3px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
     color: var(--white-blue);
     font-size: 2rem;
 }
 .title-2{
     background: green;
-    padding: 5px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    padding: 3px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     color: var(--white-blue);
     font-size: 2rem;
 }
@@ -54,11 +57,12 @@ h1{
     cursor: pointer;
 }
 .card-custom>img{
-    height: 70%;
+    height: 80%;
     width: 100%;
     background: white;
     object-fit:cover;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px ;
     pointer-events: none;
+    margin-bottom: 10px;
 }

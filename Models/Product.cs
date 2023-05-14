@@ -40,7 +40,6 @@ namespace NutryDairyASPApplication.Models
         public string ImagePath { get; set; }
 
         [NotMapped]
-        [Required]
         [Display(Name="Imagen")]
         public IFormFile Archivo { get; set; }
 

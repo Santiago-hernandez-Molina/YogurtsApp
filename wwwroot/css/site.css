@@ -10,24 +10,30 @@
 .container-custom{
     background: var(--white-blue);
     color: var(--dark-blue);
-    padding: 20px;
-    border-radius: 15px;
+    padding: 10px;
+    border-radius: 5px;
 }
 legend{
     color: var(--strong-blue);
 }
+a.card-link{
+    text-decoration: none;   
+}
+
 .nav-link-custom{
     color: var(--white-blue);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 14px;
     height: auto;
     text-align: center;
     user-select: none;
 }
 .btn{
     width: auto;
+    font-size: 14px;
     border: none;
-    padding: 5px;
+    padding: 3px;
+    border-radius: 2px;
     margin: 5px;
     background: var(--dark-blue);
     color: var(--white-blue);

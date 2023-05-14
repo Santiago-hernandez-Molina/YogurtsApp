@@ -9,11 +9,10 @@ a{
     color: var(--white-blue);
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     display: grid;
     place-items: center;
     width: 100%;
-    min-height: 100vh;
     background-image: url('/assets/img/strawberry-dessert-2191973_1920.jpg');
     background-attachment: fixed;
 }
@@ -26,11 +25,10 @@ a{
 
 .footer {
   position: absolute;
-  color: var(--dark-blue);
   bottom: 0;
   width: 100%;
   white-space: nowrap;
   line-height: 60px;
-  background: var(--white-blue);
+  background: var(--strong-blue);
 }
 
