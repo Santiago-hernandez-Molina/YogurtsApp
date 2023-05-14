@@ -1,0 +1,23 @@
+.container-custom{
+    width: 100%;
+    color: var(--dark-blue);
+    background: var(--white-blue);
+    border-radius: 10px;
+    padding: 10px;
+}
+.card{
+    margin-right: 5px;
+}
+.title{
+    color: var(--dark-blue);
+}
+.nav-link{
+    color: var(--strong-blue);
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: var(--light-blue);
+    background-color: var(--strong-blue);
+}
+a.btn{
+    width: 100%;
+}

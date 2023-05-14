@@ -1,0 +1,32 @@
+@model List<Product>;
+<a type="button" asp-controller="Product" asp-action="Create" class="btn">Crear</a>
+<div class="card-group">
+    @foreach (var Product in Model)
+    {
+    int decimales = 2;
+    decimal Fats = Math.Round(@Product.Fats, decimales);
+    decimal Calories = Math.Round(@Product.Calories, decimales);
+    decimal Price = Math.Round(@Product.Price, decimales);
+    decimal Proteins = Math.Round(@Product.Proteins, decimales);
+    <div class="card" style="margin-right: 5px; max-width: 15em;">
+        <img src="@Product.ImagePath" class="card-img-top" 
+        style="height: 250px; object-fit: cover;" alt="@Product.Name">
+        <div class="card-body">
+            <h5 class="card-title" style="color: var(--strong-blue);">@Product.Name</h5>
+            <p style="height: 50px; overflow: hidden;" class="card-text">@Product.Description</p>
+            ...
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Price</strong> $@Price</li>
+            <li class="list-group-item"><strong>Calories</strong> @Calories</li>
+            <li class="list-group-item"><strong>Proteins</strong> @Proteins</li>
+            <li class="list-group-item"><strong>Fats</strong> @Fats</li>
+            <li class="list-group-item"><strong>Stock</strong> @Product.Stock</li>
+        </ul>
+        <div class="card-body">
+            <a asp-controller="Product" asp-action="Edit" asp-route-id="@Product.Id" class="card-link">Editar</a>
+            <a asp-controller="Product" asp-action="Delete" asp-route-id="@Product.Id" class="card-link">Borrar</a>
+        </div>
+    </div>
+    }
+</div>

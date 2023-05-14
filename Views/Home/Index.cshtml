@@ -1,0 +1,20 @@
+﻿@model NutryDairyASPApplication.ViewModels.HomeVM
+
+@{
+ViewData["Title"] = "Home Page";
+}
+<div class="principal">
+    <h1 class="text-center" ><span class='title-1'>Great </span><span class='title-2'>Valley</span></h1>
+    <div class="cards-container-custom">
+        @foreach (var Product in Model.products)
+        {
+           <a asp-controller="Product" asp-action="Detail" asp-route-id="@Product.Id" style="text-decoration: none;" >
+              <div class="card-custom">
+                <img src="@Product.ImagePath" alt=""/>
+                <p>@Product.Name</p>
+              </div>
+          </a>
+        }
+    </div>
+    <a type="button" class='btn' asp-controller="Product" asp-action="Index"> Ver más</a>
+</div>

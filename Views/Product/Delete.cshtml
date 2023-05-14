@@ -1,0 +1,47 @@
+@model Product;
+
+<form asp-action="Delete">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <legend>¿Desea Borrar el siguiente Producto?</legend>
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input type="text" asp-for="Name" class="form-control" readonly>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea rows="4" style="resize: none" asp-for="Description" class="form-control" readonly></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="ProductSetId" class="form-label"></label>
+        <input type="text" asp-for="ProductSetId" class="form-control" readonly>
+        <span asp-validation-for="ProductSetId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Price" class="form-label"></label>
+        <input type="number" asp-for="Price" class="form-control" readonly>
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Proteins" class="form-label"></label>
+        <input type="number" asp-for="Proteins" class="form-control" readonly>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Fats" class="form-label"></label>
+        <input type="number" asp-for="Fats" class="form-control" readonly>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Calories" class="form-label"></label>
+        <input type="number" asp-for="Calories" class="form-control" readonly>
+    </div>
+    <div class="mb-3">
+        <label asp-for="ImagePath" class="form-label"></label>
+        <input type="text" asp-for="ImagePath" class="form-control" readonly>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Stock" class="form-label"></label>
+        <input type="number" asp-for="Stock" class="form-control" readonly>
+    </div>
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>

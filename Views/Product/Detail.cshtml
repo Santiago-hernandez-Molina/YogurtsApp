@@ -1,0 +1,24 @@
+@model NutryDairyASPApplication.Models.Product
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
+
+@{
+ViewBag.Title = "title";
+Layout = "_Layout";
+}
+
+<div class="content row">
+    <section class="d-flex flex-column justify-content-center align-items-center">
+        <h2>@Model.Name</h2>
+        <img src=@Model.ImagePath alt=@Model.Name>
+        <p class="detail-p">@Model.Description</p>
+        <div class="col">
+            @if (SignInManager.IsSignedIn(User))
+            {
+            <button class="btn btn-bought" type="button">Añadir al carrito</button>
+            }
+            <a class="btn">Ingredientes</a>
+        </div>
+    </section>
+</div>
