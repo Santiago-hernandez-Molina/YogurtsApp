@@ -1,5 +1,5 @@
 @model List<Product>;
-<a type="button" asp-controller="Product" asp-action="Create" class="btn">Crear</a>
+<a type="button" asp-controller="Product" asp-action="Create" class="btn" style="height: 30px; width: 100px;">Crear</a>
 <div class="card-group">
     @foreach (var Product in Model)
     {
@@ -8,7 +8,7 @@
     decimal Calories = Math.Round(@Product.Calories, decimales);
     decimal Price = Math.Round(@Product.Price, decimales);
     decimal Proteins = Math.Round(@Product.Proteins, decimales);
-    <div class="card" style="margin-right: 5px; margin-top: 5px; min-width: 12em; max-width: 15em;">
+    <div class="card" style="margin-right: 5px; margin-top: 5px; min-width: 15em; max-width: 15em;">
         <img src="@Product.ImagePath" class="card-img-top" 
         style="height: 250px; object-fit: cover;" alt="@Product.Name">
         <div class="card-body">

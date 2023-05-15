@@ -8,20 +8,19 @@ a{
 .presentation-custom{
     color: var(--white-blue);
     min-height: 100vh;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 15px;
     display: grid;
     place-items: center;
     width: 100%;
     background-image: url('/assets/img/strawberry-dessert-2191973_1920.jpg');
     background-attachment: fixed;
 }
-.presentation-custom img{
-    position: fixed;
-}
 .container{
     width: 100%;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .footer {

@@ -3,38 +3,39 @@
 @inject UserManager<IdentityUser> UserManager
 
 <nav class="navbar-custom">
-    <button id="btn-menu" type="button" class='btn-enable' ><i class="bi bi-menu-button-wide-fill"></i></button>
+    <button id="btn-menu" type="button" class='btn-enable'><i class="bi bi-menu-button-wide-fill"></i></button>
     <div id="menu" class="nav-section nav-section-disable">
         <div class="nav-sep"></div>
-        <ul>
+        <ul class="text-center">
             <li class="nav-item-custom">
                 <a class="nav-link-custom" asp-controller="Home" asp-action="Index">
-                    Inicio <i class="bi bi-house-door-fill"></i></a>
+                    Inicio <br> <i class="bi bi-house-door-fill"></i></a>
             </li>
             <li class="nav-item-custom">
-                <a class="nav-link-custom">
-                    Yogurt <i class="bi bi-cup-straw"></i></a>
+                <a class="nav-link-custom" asp-controller="Product" asp-action="Index">
+                    Productos <br> Gran Valle <i class="bi bi-cup-straw"></i></a>
             </li>
             <li class="nav-item-custom">
-                <a class="nav-link-custom">Blog</a>
+                <a class="nav-link-custom" asp-controller="Home" asp-action="Index"> 
+                    Blog <br> <i class="bi bi-journal-bookmark-fill"></i></a>
             </li>
         </ul>
     </div>
     <div class="logo-custom" id="logo"> 
-        <img class="logo-img" src="/assets/icons/nutry-dairy-logo.png" alt="nutrydairy" />
+        <img class="logo-img" src="/assets/img/Logo-Gran-Valle.png" alt="nutrydairy" />
     </div>
     <div id="menu-2" class="nav-section nav-section-disable">
         <div class="nav-sep"></div>
-        <ul>
+        <ul class="text-center">
             @if (SignInManager.IsSignedIn(User))
             {
             <li class="nav-item-custom">
                 <a class="nav-link-custom">
-                    Carrito <i class="bi bi-basket3-fill"></i></a>
+                    Carrito <br> <i class="bi bi-basket3-fill"></i></a>
             </li>
             <li class="nav-item-custom">
                 <a class="nav-link-custom" asp-controller="Admin" asp-action="Index">
-                    Admin <i class="bi bi-pencil"></i></a>
+                    Admin <br> <i class="bi bi-pencil"></i></a>
             </li>
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">

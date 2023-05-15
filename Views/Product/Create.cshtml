@@ -1,7 +1,8 @@
 @model Product;
+<div class="col-md-8 offset-md-2">
     <form method="post" asp-action="Create" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <legend>Nuevo Producto</legend>
+        <legend class="text-center">Nuevo Producto</legend>
         <div class="mb-3">
             <label asp-for="Name" class="form-label"></label>
             <input type="text" asp-for="Name" class="form-control">
@@ -46,3 +47,4 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+</div>
