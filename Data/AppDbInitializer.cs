@@ -24,17 +24,19 @@ namespace NutryDairyASPApplication.Data
                     await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
                 }
                 // Users
-                string email = "juan.mendoza@usantoto.edu.co";
+                string email = "andres.diazs@usantoto.edu.co";
                 string password = "Ust4.T1ck3ts";
-                var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+                var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                 if (await userManager.FindByNameAsync(email) == null)
                 {
-                    var user = new IdentityUser()
+                    var user = new ApplicationUser()
                     {
                         UserName = email,
                                  Email = email,
                                  PhoneNumber = "6087440404",
-                                 EmailConfirmed = true
+                                 EmailConfirmed = true,
+                                 CityId = 1,
+
                     };
                     var result = await userManager.CreateAsync(user);
                     if (result.Succeeded)
@@ -43,23 +45,7 @@ namespace NutryDairyASPApplication.Data
                         await userManager.AddToRoleAsync(user, UserRoles.Admin);
                     }
                 }
-                email = "fmendoza@unicauca.edu.co";
-                if (await userManager.FindByNameAsync(email) == null)
-                {
-                    var user = new IdentityUser()
-                    {
-                        UserName = email,
-                                 Email = email,
-                                 PhoneNumber = "6087440404",
-                                 EmailConfirmed = true
-                    };
-                    var result = await userManager.CreateAsync(user);
-                    if (result.Succeeded)
-                    {
-                        await userManager.AddPasswordAsync(user, password);
-                        await userManager.AddToRoleAsync(user, UserRoles.User);
-                    }
-                }
+                
             }
         }
         public static void Seed(IApplicationBuilder applicationBuilder)

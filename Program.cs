@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NutryDairyASPApplication.Data;
+using NutryDairyASPApplication.Models;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,13 +15,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
         Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.23-mysql")
     )
 ); 
+
+//builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
 //    .AddEntityFrameworkStores<ApplicationDbContext>();
 //builder.Services.AddControllersWithViews();
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
         {
         options.Stores.MaxLengthForKeys = 128;
         options.SignIn.RequireConfirmedAccount= true;
