@@ -1,55 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 :root{
-    --strong-blue: #537FE7;
+    --strong-blue: #328dd8;
     --light-blue: #C0EEF2;
     --dark-blue: #181823;
-    --white-blue: #E9F8F9;
+    --white-blue: #F8F5E4;
+    --green: #348104;
+    --yellow: #F7C04A;
 }
 .nav-link-custom:hover{
-    color: var(--light-blue);
+    color: var(--green);
 }
-.container-custom{
-    background: var(--white-blue);
+.container{
+    background: white;
     color: var(--dark-blue);
     border-radius: 5px;
-    padding-bottom: 20px;
 }
+
 legend{
     color: var(--strong-blue);
 }
+
 a.card-link{
     text-decoration: none;   
 }
 
 .nav-link-custom{
-    color: var(--white-blue);
+    color: var(--strong-blue);
     text-decoration: none;
-    font-size: 14px;
+    font-size: 18px;
     height: auto;
     text-align: center;
     user-select: none;
 }
 .btn{
     width: auto;
+    min-width: 120px;
     font-size: 14px;
     border: none;
     padding: 3px;
     border-radius: 2px;
     margin: 5px;
-    background: var(--dark-blue);
+    background: var(--yellow);
     color: var(--white-blue);
-    border: 1px solid var(--dark-blue);
+    border: 1px solid var(--yellow);
 }
 .btn:hover{
     cursor: pointer;
-    color: var(--dark-blue);
-    background: var(--light-blue);
-    border: 1px solid var(--dark-blue);
+    color: var(--white-blue);
+    background: var(--green);
+    border: 1px solid var(--green);
+}
+.btn-card{
+    background: var(--green);
+    border: 1px solid var(--green);
+}
+.btn-card:hover{
+    background: var(--strong-blue);
+    border: 1px solid var(--strong-blue);
 }
 
 @media (min-width: 768px) {
   html {
     font-size: 16px;
   }
+}
+@media(max-width:1024px){
+    .nav-link-custom{
+        font-size: 14px;
+    }
 }
 
 html {

@@ -1,49 +1,57 @@
 .navbar-custom{
     display: flex;
-    justify-content: center;
-    background: var(--strong-blue);
+    background: white;
+    justify-content: space-between;
     width: 100%;
     height: auto;
+    padding: 0;
+    margin: 0;
     position: fixed;
     top: 0;
     z-index: 3;
     box-shadow: 2px 11px 5px -4px rgba(0,0,0,0.61);
-    font-weight: bold;
 }
 .nav-section{
     display: grid;
-    grid-template-rows: 37% 55%;
-    width: 100%;
+    grid-template-rows: 40% auto;
+    width: 82%;
+    border-top-left-radius: 20px;
 }
 .logo-custom{
-    width: 25vh;
+    width: 7vw;
     overflow: hidden;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    min-height: 50px;
+    min-width: 50px;
 }
 .logo-img{
     width: 100%;
-    margin-bottom: 10px;
-    border-bottom-right-radius: 10px ;
-    border-bottom-left-radius: 10px ;
-    background: var(--white-blue);
+    object-fit:fill;
+    background: white;
+    border-radius: 10px;
 }
 .nav-sep{
-    border-bottom: 1px solid var(--white-blue) ;
+    border-bottom: 1px solid var(--strong-blue) ;
 }
 .nav-section>ul{
     display: flex;
+    border-top-left-radius: 20px;
+    height: auto;
     flex-direction: row;
-    padding: 0;
     justify-content: space-around;
+    padding: 0;
+    margin: 0;
     align-items: center;
-    margin-top: 2px;
-    margin-bottom: 0;
 }
 .nav-item-custom{
     list-style: none;
-    margin-left: 5px;
-    margin-right: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 5px;
+    display: grid;
+    place-items: center;
+    height: 30px;
+    font-family: 'Rubik', sans-serif;
 }
 .btn-enable{
     width: 0;
@@ -51,7 +59,7 @@
     padding: 0;
     border: 0;
     overflow: hidden;
-    background: var(--dark-blue);
+    background: var(--green);
     color: var(--white-blue);
     border-radius: 5px;
     align-self: self-start;
@@ -59,48 +67,53 @@
 
 
 @media(max-width:800px){
-    ul{
-        background: var(--light-blue);
-        margin: 50px;
-        border-radius: 20px;
-        border: 2px solid var(--dark-blue);
-    }
-    .nav-section-disable{
+    .nav-section {
         height: 0px;
+        transition: height 0.25s ease-out;
         overflow-y: hidden;
+        display: grid;
+        grid-template-rows: 0 auto;
+        width: 100%;
+        place-items:center;
+    }
+    .nav-section-enable{
+        height: 60vh;
+        overflow-y: scroll;
+        transition: height 0.25s ease-in;
+    }
+    ::-webkit-scrollbar {
+        display: none;
     }
     .btn-enable{
         margin-top: 10px;
         margin-left: 10px;
-        width: 70px;
-        height: 5vh;
+        width: 50px;
+        height: 40px;
     }
     .btn-enable:hover{
-        background: lightblue;
-        color: var(--dark-blue);
-        border: 1px solid var(--dark-blue);
+        background: var(--yellow);
+        color: var(--white-blue);
+        border: 1px solid var(--yellow);
     }
     .navbar-custom{
-        flex-direction: column; 
-        align-items: center;
-        position: fixed;
-        justify-content: space-evenly;
-        min-height: 12vh;
+        min-height: 65px;
+        flex-direction: column;
     }
-    .nav-section {
-        display: grid;
-        grid-template-rows: 0vh 200px;
-        place-items:center;
+    .navbar-custom-active{
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
     }
 
     .logo-custom{
-        width: 10vh;
+        width: 13vh;
+        max-width: 57px;
         position: absolute;
-        top: 1vh;
-        right: 2%;
+        top: 0.5vh;
+        right: 45%;
     }
     .logo-custom>img{
         object-fit: cover;
+        width: 100%;
         border-radius: 10px ;
         height: 100%;
     }
@@ -110,18 +123,19 @@
     .logo-disable{
         width: 0;
         height: 0;
+        min-width: 0;
+        min-height: 0;
         overflow: hidden;
     }
-    .nav-section>ul{
+    .nav-section-enable>ul{
         margin: 0;
         flex-direction: column;
         justify-content: start;
         align-items: center;
-        width: 70%;
+        width: 80%;
     }
     .nav-item-custom{
         color: var(--white-blue);
-        background: var(--dark-blue);
         margin-bottom: 10px;
         padding-bottom: 5px ;
         border-radius: 5px;

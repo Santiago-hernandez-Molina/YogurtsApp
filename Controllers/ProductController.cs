@@ -49,6 +49,8 @@ public class ProductController : Controller
             // Actualizar el modelo con la URL de la imagen en el servidor FTP
             var rutaAcceso = "http"+ ruta + nombreArchivo;
             Product.ImagePath = rutaAcceso;
+        }else{
+            Product.ImagePath = "";
         }
 
         if (!ModelState.IsValid)

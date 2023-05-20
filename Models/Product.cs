@@ -44,9 +44,10 @@ namespace NutryDairyASPApplication.Models
         public IFormFile Archivo { get; set; }
 
         [Required]
+        [Display(Name="Categoría")]
         public int ProductSetId { get; set; }
         [ForeignKey("ProductSetId")]
-        [Display(Name="Categoria")]
+        [Display(Name="Categoría")]
         public ProductSet ProductSet { get; set; }
 
         public List<Ingredient_Products> Ingredient_Products { get; set; }

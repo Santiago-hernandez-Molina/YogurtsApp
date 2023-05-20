@@ -1,20 +1,31 @@
 h1{
     margin-bottom: 5px;
+    margin-top: 5px;
+    height: auto;
 }
 .presentation img{
-    height: 71vh;
-    object-fit: cover;
+    height: 69.5vh;
+    width: 100%;
+    object-fit:cover;
+    user-select: none;
 }
 .principal{
     width: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     text-align: center;
     justify-content: start;
     align-items: center;
+    background-image: url("/assets/img/wood.jpg");
+    background-size: cover;
+    border: 1px solid white;
+    padding-bottom: 20px;
+
 }
 .cards-container-custom{
     margin-top: 25px;
+    height: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr ;
     place-items: center;
@@ -24,16 +35,18 @@ h1{
     padding: 2px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    border-right: none;
     color: var(--white-blue);
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 }
 .title-2{
     background: green;
+    border-left: none;
     padding: 2px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     color: var(--white-blue);
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 }
 @media (max-width:800px) {
     .cards-container-custom{
@@ -43,21 +56,23 @@ h1{
 }
 
 .card-custom{
-    height: 280px;
-    width: 200px;
-    color: var(--light-blue);
+    height: 350px;
+    width: 270px;
+    color: var(--white-blue);
     background: var(--strong-blue);
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
     border-radius: 10px;
     margin: 10px;
     user-select: none;
 }
 .card-custom:hover{
-    box-shadow: 20px 20px 20px -20px rgba(12,98,173,1);
-    transition: 0.3s;
+    transform: scale(1.04);
+    transition: ease-in .2s;
     cursor: pointer;
 }
 .card-custom>img{
-    height: 80%;
+    height: 85%;
     width: 100%;
     background: white;
     object-fit:cover;
@@ -65,4 +80,14 @@ h1{
     border-top-right-radius: 10px ;
     pointer-events: none;
     margin-bottom: 10px;
+}
+.btn-card{
+    background: var(--green);
+    border: 1px solid var(--green);
+}
+@media(max-width:1024px){
+    .card-custom{
+        width: 200px;
+        height: 280px;
+    }
 }

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>@ViewData["Title"] - NutryDairyASPApplication</title>
+        <title>@ViewData["Title"]</title>
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
         <link rel="stylesheet" href="/NutryDairyASPApplication.styles.css" asp-append-version="true"/>
@@ -15,8 +15,8 @@
         </header>
         <div>
             <main role="main">
-                <section class="presentation-custom" style="padding-top: 20vh;">
-                    <div class="container-custom container border">
+                <section class="presentation-custom" style="padding-top: 21vh;">
+                    <div class="container border">
                         @RenderBody()
                     </div>
                 </section>
@@ -24,9 +24,9 @@
         </div>
 
         <footer class="border-top footer text-muted">
-            <div class="container" style="color: var(--white-blue);">
+            <div class="container" style="color: var(--strong-blue);">
                 &copy; 2023 - NutryDairyASPApplication - <a asp-area="" asp-controller="Home" asp-action="Privacy" 
-                    style="color: var(--light-blue);">Privacy</a>
+                    >Privacy</a>
             </div>
         </footer>
         <script src="~/lib/jquery/dist/jquery.min.js"></script>

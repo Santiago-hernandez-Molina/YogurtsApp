@@ -16,6 +16,8 @@ a{
     width: 100%;
     background-image: url('/assets/img/strawberry-dessert-2191973_1920.jpg');
     background-attachment: fixed;
+    background-size: cover;
+    background-position:bottom;
 }
 .container{
     width: 100%;
@@ -29,6 +31,5 @@ a{
   width: 100%;
   white-space: nowrap;
   line-height: 60px;
-  background: var(--strong-blue);
 }
 
