@@ -1,7 +1,9 @@
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NutryDairyASPApplication.Data;
 using NutryDairyASPApplication.Models;
+using ustaTickets.Data.Static;
 
 namespace NutryDairyASPApplication.Controllers;
 
@@ -27,6 +29,7 @@ public class ProductController : Controller
     }
 
     [HttpPost]
+    [Authorize(Roles = UserRoles.Admin)]
     public IActionResult Create([Bind("Id, Name, Archivo, Description, Price, Proteins, Calories, Fats, Stock, ProductSetId")]Product Product)
     {
         string ruta = "://localhost/nutredairy/";

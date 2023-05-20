@@ -13,6 +13,7 @@ namespace NutryDairyASPApplication.Models
         public int DepartmentId { get; set; }
         [ForeignKey("DepartmentId")]
         public Department Department { get; set; }
+        public List<ApplicationUser> ApplicationUsers { get; set; }
     }
 
 }

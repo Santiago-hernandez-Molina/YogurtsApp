@@ -1,9 +1,67 @@
+using Microsoft.AspNetCore.Identity;
 using NutryDairyASPApplication.Models;
+using ustaTickets.Data.Static;
 
 namespace NutryDairyASPApplication.Data
 {
     public class AppDbInitializer
     {
+        public static async Task SeedUserAndRolesAsync(IApplicationBuilder applicationBuilder)
+        {
+            using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
+            {
+                var services = serviceScope.ServiceProvider;
+                var context = services.GetRequiredService<ApplicationDbContext>();
+
+                // Roles
+                var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                if (await roleManager.FindByNameAsync(UserRoles.Admin) == null)
+                {
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+                }
+                if (await roleManager.FindByNameAsync(UserRoles.User) == null)
+                {
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+                }
+                // Users
+                string email = "juan.mendoza@usantoto.edu.co";
+                string password = "Ust4.T1ck3ts";
+                var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+                if (await userManager.FindByNameAsync(email) == null)
+                {
+                    var user = new IdentityUser()
+                    {
+                        UserName = email,
+                                 Email = email,
+                                 PhoneNumber = "6087440404",
+                                 EmailConfirmed = true
+                    };
+                    var result = await userManager.CreateAsync(user);
+                    if (result.Succeeded)
+                    {
+                        await userManager.AddPasswordAsync(user, password);
+                        await userManager.AddToRoleAsync(user, UserRoles.Admin);
+                    }
+                }
+                email = "fmendoza@unicauca.edu.co";
+                if (await userManager.FindByNameAsync(email) == null)
+                {
+                    var user = new IdentityUser()
+                    {
+                        UserName = email,
+                                 Email = email,
+                                 PhoneNumber = "6087440404",
+                                 EmailConfirmed = true
+                    };
+                    var result = await userManager.CreateAsync(user);
+                    if (result.Succeeded)
+                    {
+                        await userManager.AddPasswordAsync(user, password);
+                        await userManager.AddToRoleAsync(user, UserRoles.User);
+                    }
+                }
+            }
+        }
         public static void Seed(IApplicationBuilder applicationBuilder)
         {
             using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
