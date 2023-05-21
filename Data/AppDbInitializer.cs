@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using NutryDairyASPApplication.Models;
-using ustaTickets.Data.Static;
+using NutryDairyASPApplication.Data.Static;
 
 namespace NutryDairyASPApplication.Data
 {
@@ -45,7 +45,7 @@ namespace NutryDairyASPApplication.Data
                         await userManager.AddToRoleAsync(user, UserRoles.Admin);
                     }
                 }
-                
+
             }
         }
         public static void Seed(IApplicationBuilder applicationBuilder)
@@ -131,7 +131,32 @@ namespace NutryDairyASPApplication.Data
                             },
                             });
                     context.SaveChanges();
-
+                }
+                if(!context.Departments.Any())
+                {
+                    context.Departments.AddRange(new List<Department>()
+                            {
+                            new Department
+                            {
+                                Name = "Boyacá",
+                                DaneCode = "15",
+                            }
+                            });
+                    context.SaveChanges();
+                }
+                if(!context.Cities.Any())
+                {
+                    context.Cities.AddRange(new List<City>()
+                            {
+                            new City
+                            {
+                                Name = "Tunja",
+                                DaneCode = "15.001",
+                                Region = "Centro Oriente",
+                                DepartmentId = 1
+                            }
+                            });
+                    context.SaveChanges();
                 }
             }
         }

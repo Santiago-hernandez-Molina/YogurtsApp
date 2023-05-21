@@ -15,7 +15,12 @@
         </div>
         <div class="mb-3">
             <label asp-for="ProductSetId" class="form-label"></label>
-            <input type="text" asp-for="ProductSetId" class="form-control">
+            <select name="ProductSetId" class="form-select form-select-sm mb-3">
+                @foreach (var item in ViewBag.Categories)
+                {
+                <option value="@item.Id">@item.Name</option>
+                }
+            </select>
             <span asp-validation-for="ProductSetId" class="text-danger"></span>
         </div>
         <div class="mb-3">

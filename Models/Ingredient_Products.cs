@@ -14,6 +14,6 @@ namespace NutryDairyASPApplication.Models
         public int IngredientId { get; set;}
         [ForeignKey("IngredientId")]
         public Ingredient Ingredient { get; set; }
-        
+
     }
 }

@@ -3,15 +3,18 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NutryDairyASPApplication.Data;
 using NutryDairyASPApplication.Models;
-using ustaTickets.Data.Static;
+using NutryDairyASPApplication.Data.Static;
+using FluentFTP;
+using Microsoft.EntityFrameworkCore;
+using X.PagedList;
 
 namespace NutryDairyASPApplication.Controllers;
 
 public class ProductController : Controller
 {
-    
+
     private readonly ApplicationDbContext _context;
-    
+
     public ProductController(ApplicationDbContext context)
     {
         _context = context;
@@ -20,49 +23,98 @@ public class ProductController : Controller
     // GET
     public IActionResult Index()
     {
+        var data = _context.Products.ToList();
+        return View(data);
+    }
+
+    [Authorize(Roles = UserRoles.Admin)]
+    public IActionResult AdminIndex(string SortOn, string orderBy, string pSortOn, int? page)
+    {
+        int recordsPerPage = 5;
+        if(!page.HasValue)
+        {
+            page = 1;
+            orderBy = string.IsNullOrWhiteSpace(orderBy) || orderBy.Equals("asc") ? "desc" : "asc";
+        }
+        if (!string.IsNullOrWhiteSpace(SortOn) && !SortOn.Equals(pSortOn, StringComparison.CurrentCultureIgnoreCase))
+        {
+            orderBy = "asc";
+        }
+
+        ViewBag.OrderBy = orderBy;
+        ViewBag.SortOn = SortOn;
+        var data = _context.Products.AsQueryable();
+        switch (SortOn)
+        {
+            case "Name":
+                data = orderBy.Equals("asc") ? data.OrderBy(i => i.Name): data.OrderByDescending(i=>i.Name);
+                break;
+            case "Price":
+                data = orderBy.Equals("asc") ? data.OrderBy(i => i.Price): data.OrderByDescending(i=>i.Price);
+                break;
+            default:
+                data = data.OrderBy(i=>i.Id);
+                break;
+        }
+        ViewBag.products = data.ToPagedList(page.Value, recordsPerPage);
         return View();
     }
 
+    [Authorize(Roles = UserRoles.Admin)]
     public IActionResult Create()
     {
+        ViewBag.Categories = _context.ProductSets.ToList();
         return View(new Product());
     }
 
     [HttpPost]
     [Authorize(Roles = UserRoles.Admin)]
-    public IActionResult Create([Bind("Id, Name, Archivo, Description, Price, Proteins, Calories, Fats, Stock, ProductSetId")]Product Product)
+    public IActionResult Create([Bind("Id, Name, Archivo, Description, Price, Proteins, Calories, Fats, Stock, ProductSetId")]Product data)
     {
-        string ruta = "://localhost/nutredairy/";
-        if (Product.Archivo != null && Product.Archivo.Length > 0)
-        {
-            var nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(Product.Archivo.FileName);
-            var rutaDestino = "ftp"+ ruta + nombreArchivo;
-            var solicitud = (System.Net.FtpWebRequest)WebRequest.Create(rutaDestino);
-            solicitud.Credentials = new NetworkCredential("nutredairy", "123456");
-            solicitud.Method = WebRequestMethods.Ftp.UploadFile;
-            using (var stream = Product.Archivo.OpenReadStream())
-                using (var reader = new BinaryReader(stream))
-                {
-                    var contenido = reader.ReadBytes((int)Product.Archivo.Length);
-                    using (var ftpStream = solicitud.GetRequestStream())
-                    {
-                        ftpStream.Write(contenido, 0, contenido.Length);
-                    }
-                }
-            // Actualizar el modelo con la URL de la imagen en el servidor FTP
-            var rutaAcceso = "http"+ ruta + nombreArchivo;
-            Product.ImagePath = rutaAcceso;
-        }else{
-            Product.ImagePath = "";
-        }
-
         if (!ModelState.IsValid)
         {
-            return View(Product);
+            return View(data);
         }
-        _context.Products.Add(Product);
-        _context.SaveChanges();
-        return RedirectToAction(nameof(Index),"Admin");
+
+        string[] allowedContentTypes = { "image/jpeg", "image/png", "image/gif" };
+        if (!ModelState.IsValid)
+        {
+            return View(data);
+        }
+        string ruta = "://localhost/nutredairy/";
+
+        if (data.Archivo != null && data.Archivo.Length > 0 )
+        {
+            if (allowedContentTypes.Contains(data.Archivo.ContentType))
+            {
+                var nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(data.Archivo.FileName);
+                var rutaDestino = "ftp" + ruta + nombreArchivo;
+                var credenciales = new NetworkCredential("nutredairy", "123456");
+
+                using (var client = new FtpClient("localhost", credenciales.UserName, credenciales.Password))
+                {
+                    client.AutoConnect();
+                    client.UploadStream(data.Archivo.OpenReadStream(), "/nutredairy/"+nombreArchivo);
+                }
+                var rutaAcceso = "http" + ruta + nombreArchivo;
+                data.ImagePath = rutaAcceso;
+            }
+        }
+        else
+        {
+            data.ImagePath = "";
+        }
+        try
+        {
+            _context.Products.Add(data);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index),"Admin");
+        }
+        catch(DbUpdateException)
+        {
+            ModelState.AddModelError("", "La categoria no existe!");
+            return View(data);
+        }
     }
 
     public IActionResult Detail(int? id)
@@ -78,6 +130,8 @@ public class ProductController : Controller
         }
         return View(Product);
     }
+
+    [Authorize(Roles = UserRoles.Admin)]
     public IActionResult Edit(int? id)
     {
 
@@ -90,47 +144,52 @@ public class ProductController : Controller
         {
             return NotFound("Not Found");
         }
+        ViewBag.Categories = _context.ProductSets.ToList();
         return View(Product);
     }
 
     [HttpPost]
-    public IActionResult Edit(int id, [Bind("Id, Name, Archivo, Description, Price, Proteins, Calories, Fats, Stock, ProductSetId")]Product Product)
+    [Authorize(Roles = UserRoles.Admin)]
+    public IActionResult Edit(int id, [Bind("Id, Name, ImagePath, Archivo, Description, Price, Proteins, Calories, Fats, Stock, ProductSetId")]Product data)
     {
-        if (!ModelState.IsValid)
+        string[] allowedContentTypes = { "image/jpeg", "image/png", "image/gif" };
+        if (!ModelState.IsValid  || id != data.Id)
         {
-            return View(Product);
+            ModelState.AddModelError("", "¡Hubo un problema, verifica los datos y la Imagen!");
+            return View(data);
         }
         string ruta = "://localhost/nutredairy/";
-        if (Product.Archivo != null && Product.Archivo.Length > 0)
-        {
-            var nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(Product.Archivo.FileName);
-            var rutaDestino = "ftp"+ ruta + nombreArchivo;
-            var solicitud = (System.Net.FtpWebRequest)WebRequest.Create(rutaDestino);
-            solicitud.Credentials = new NetworkCredential("nutredairy", "123456");
-            solicitud.Method = WebRequestMethods.Ftp.UploadFile;
-            using (var stream = Product.Archivo.OpenReadStream())
-                using (var reader = new BinaryReader(stream))
-                {
-                    var contenido = reader.ReadBytes((int)Product.Archivo.Length);
-                    using (var ftpStream = solicitud.GetRequestStream())
-                    {
-                        ftpStream.Write(contenido, 0, contenido.Length);
-                    }
-                }
-            // Actualizar el modelo con la URL de la imagen en el servidor FTP
-            var rutaAcceso = "http"+ ruta + nombreArchivo;
-            Product.ImagePath = rutaAcceso;
-        }
 
-        if(id == Product.Id)
+        if (data.Archivo != null && data.Archivo.Length > 0 )
         {
-            _context.Products.Update(Product);
-            _context.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            if (allowedContentTypes.Contains(data.Archivo.ContentType))
+            {
+                var nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(data.Archivo.FileName);
+                var rutaDestino = "ftp" + ruta + nombreArchivo;
+                var credenciales = new NetworkCredential("nutredairy", "123456");
+
+                using (var client = new FtpClient("localhost", credenciales.UserName, credenciales.Password))
+                {
+                    client.AutoConnect();
+                    client.UploadStream(data.Archivo.OpenReadStream(), "/nutredairy/"+nombreArchivo);
+                }
+                var rutaAcceso = "http" + ruta + nombreArchivo;
+                data.ImagePath = rutaAcceso;
+            }
         }
-        return View("Detail",Product);
+        try{
+            _context.Products.Update(data);
+            _context.SaveChanges();
+        }
+        catch(DbUpdateException)
+        {
+            ModelState.AddModelError("", "La categoria no existe!");
+            return View(data);
+        }
+        return RedirectToAction(nameof(Index),"Admin");
     }
 
+    [Authorize(Roles = UserRoles.Admin)]
     public IActionResult Delete(int id)
     {
         var data = _context.Products.FirstOrDefault(a=> a.Id == id);
@@ -139,6 +198,7 @@ public class ProductController : Controller
     }
 
     [HttpPost]
+    [Authorize(Roles = UserRoles.Admin)]
     public IActionResult Delete(int id, [Bind("Id, Name, ImagePath, Description, Price, Proteins, Calories, Fats, Stock, ProductSetId")] Product Product)
     {
         if (!ModelState.IsValid)

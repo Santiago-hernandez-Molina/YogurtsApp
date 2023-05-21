@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NutryDairyASPApplication.Data;
+using NutryDairyASPApplication.Data.Static;
 using NutryDairyASPApplication.ViewModels;
 
 namespace NutryDairyASPApplication.Controllers;
@@ -12,17 +14,11 @@ public class AdminController : Controller
     {
         _context = context;
     }
+    [Authorize(Roles = UserRoles.Admin)]
     public IActionResult Index()
     {
-        var Products = _context.Products.Take(10).ToList();
-        var Blogs = _context.Blogs.Take(10).ToList();
-        var Ingredients = _context.Ingredients.Take(10).ToList();
-        var ElaborationProcesses = _context.ElaborationProcess.Take(10).ToList();
-        AdminVM AdminVM = new AdminVM(){
-            Products = Products,
-                     Blogs = Blogs,
-                     Ingredients= Ingredients,
-                     ElaborationProcesses=ElaborationProcesses
+        AdminVM AdminVM = new AdminVM{
+            TotalProducts = _context.Products.Count()
         };
         return View(AdminVM);
     }

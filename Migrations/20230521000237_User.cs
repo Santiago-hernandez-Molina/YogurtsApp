@@ -140,7 +140,7 @@ namespace NutryDairyASPApplication.Migrations
                 .OldAnnotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Department",
+                name: "Departments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -152,12 +152,12 @@ namespace NutryDairyASPApplication.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Department", x => x.Id);
+                    table.PrimaryKey("PK_Departments", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "City",
+                name: "Cities",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -172,11 +172,11 @@ namespace NutryDairyASPApplication.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_City", x => x.Id);
+                    table.PrimaryKey("PK_Cities", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_City_Department_DepartmentId",
+                        name: "FK_Cities_Departments_DepartmentId",
                         column: x => x.DepartmentId,
-                        principalTable: "Department",
+                        principalTable: "Departments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -188,15 +188,15 @@ namespace NutryDairyASPApplication.Migrations
                 column: "CityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_City_DepartmentId",
-                table: "City",
+                name: "IX_Cities_DepartmentId",
+                table: "Cities",
                 column: "DepartmentId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_AspNetUsers_City_CityId",
+                name: "FK_AspNetUsers_Cities_CityId",
                 table: "AspNetUsers",
                 column: "CityId",
-                principalTable: "City",
+                principalTable: "Cities",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
@@ -205,14 +205,14 @@ namespace NutryDairyASPApplication.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUsers_City_CityId",
+                name: "FK_AspNetUsers_Cities_CityId",
                 table: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "City");
+                name: "Cities");
 
             migrationBuilder.DropTable(
-                name: "Department");
+                name: "Departments");
 
             migrationBuilder.DropIndex(
                 name: "IX_AspNetUsers_CityId",

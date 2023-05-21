@@ -1,10 +1,5 @@
-h1{
-    margin-bottom: 5px;
-    margin-top: 5px;
-    height: auto;
-}
 .presentation img{
-    height: 69.5vh;
+    height: 71vh;
     width: 100%;
     object-fit:cover;
     user-select: none;
@@ -29,24 +24,6 @@ h1{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr ;
     place-items: center;
-}
-.title-1{
-    background: #328dd8;
-    padding: 2px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-right: none;
-    color: var(--white-blue);
-    font-size: 1.5rem;
-}
-.title-2{
-    background: green;
-    border-left: none;
-    padding: 2px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    color: var(--white-blue);
-    font-size: 1.5rem;
 }
 @media (max-width:800px) {
     .cards-container-custom{

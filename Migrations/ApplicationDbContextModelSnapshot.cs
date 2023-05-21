@@ -287,7 +287,7 @@ namespace NutryDairyASPApplication.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("City");
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("NutryDairyASPApplication.Models.Department", b =>
@@ -304,7 +304,7 @@ namespace NutryDairyASPApplication.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Department");
+                    b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("NutryDairyASPApplication.Models.ElaborationProcess", b =>

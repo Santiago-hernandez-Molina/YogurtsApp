@@ -14,12 +14,16 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         base.OnModelCreating(builder);
     }
-    public DbSet<Product> Products { get; set; }
-    public DbSet<Ingredient> Ingredients { get; set; }
     public DbSet<ProductSet> ProductSets { get; set; }
+    public DbSet<Product> Products { get; set; }
+    public DbSet<Department> Departments { get; set; }
+    public DbSet<City> Cities { get; set; }
+    public DbSet<Ingredient> Ingredients { get; set; }
+    public DbSet<Ingredient_Products> Ingredient_Products { get; set; }
     public DbSet<Step> Steps { get; set; }
     public DbSet<ElaborationProcess> ElaborationProcess { get; set; }
     public DbSet<Blog> Blogs { get; set; }
     public DbSet<Article> Articles { get; set; }
+    public DbSet<Paragraph> Paragraph { get; set; }
 
 }

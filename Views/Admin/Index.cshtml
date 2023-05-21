@@ -4,23 +4,35 @@
 ViewData["Title"] = "Admin";
 }
 
-<h1 class="title text-center">@ViewData["Title"]</h1>
-<div class="d-flex align-items-start">
-    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        <button class="nav-link active pill" id="v-pills-product-tab" data-bs-toggle="pill" data-bs-target="#v-pills-product" type="button" role="tab" aria-controls="v-pills-product" aria-selected="true">Productos</button>
-        <button class="nav-link" id="v-pills-blog-tab" data-bs-toggle="pill" data-bs-target="#v-pills-blog" type="button" role="tab" aria-controls="v-pills-blog" aria-selected="false">Blog</button>
-        <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Categorias</button>
-        <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Pedidos</button>
-    </div>
-    <div class="tab-content" id="v-pills-tabContent">
-        <div class="tab-pane fade show active" id="v-pills-product" role="tabpanel" aria-labelledby="v-pills-product-tab">
-            <partial name="_ProductTablePartial.cshtml", model="@Model.Products">
-            <!--<a asp-controller="Product" asp-action="Index" class="btn">Editar Productos</a>-->
+<partial name="_TitlePartial"/>
+<div style="padding: 20px;">
+    <h1 class="title text-center" style="color: var(--strong-blue);">@ViewData["Title"]</h1>
+    <div class="row justify-content-center align-items-center">
+        <div class="nav col flex-column
+            nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="margin: 0; padding: 0;">
+            <button class="nav-link active pill" id="v-pills-product-tab" data-bs-toggle="pill" data-bs-target="#v-pills-product" type="button" role="tab" aria-controls="v-pills-product" aria-selected="true">Productos</button>
+            <button class="nav-link" id="v-pills-blog-tab" data-bs-toggle="pill" data-bs-target="#v-pills-blog" type="button" role="tab" aria-controls="v-pills-blog" aria-selected="false">Blog</button>
+            <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Categorias</button>
+            <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Pedidos</button>
         </div>
-        <div class="tab-pane fade" id="v-pills-blog" role="tabpanel" aria-labelledby="v-pills-blog-tab">
-            <a asp-controller="Product" asp-action="Index" class="btn">Editar Blogs</a>
+        <div class="tab-content col-md-9" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="v-pills-product" role="tabpanel" aria-labelledby="v-pills-product-tab">
+                <div class="card">
+                    <div class="card-header">
+                        Editar Productos
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Número Total de productos: @Model.TotalProducts</h5>
+                        <p class="card-text"></p>
+                        <a asp-controller="Product" asp-action="AdminIndex" class="btn btn-primary">Ver Todos los productos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="v-pills-blog" role="tabpanel" aria-labelledby="v-pills-blog-tab">
+                <a asp-controller="Product" asp-action="Index" class="btn">Editar Blogs</a>
+            </div>
+            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
         </div>
-        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
-        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
     </div>
 </div>

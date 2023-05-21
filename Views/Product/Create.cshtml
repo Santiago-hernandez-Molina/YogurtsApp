@@ -1,4 +1,5 @@
 @model Product;
+
 <div class="col-md-8 offset-md-2">
     <form method="post" asp-action="Create" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -15,7 +16,12 @@
         </div>
         <div class="mb-3">
             <label asp-for="ProductSetId" class="form-label"></label>
-            <input type="text" asp-for="ProductSetId" class="form-control">
+            <select name="ProductSetId" class="form-select form-select-sm mb-3">
+                @foreach (var item in ViewBag.Categories)
+                {
+                <option value="@item.Id">@item.Name</option>
+                }
+            </select>
             <span asp-validation-for="ProductSetId" class="text-danger"></span>
         </div>
         <div class="mb-3">

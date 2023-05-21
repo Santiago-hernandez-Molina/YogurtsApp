@@ -1,0 +1,48 @@
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+
+@{
+ViewBag.Title = "Productos";
+Layout = "_Layout";
+}
+<partial name="_TitlePartial"/>
+<div class="d-flex flex-column align-items-center" style="background: var(--strong-blue); padding: 20px;">
+    <nav aria-label="Page navigation example">
+        @Html.PagedListPager(
+        (IPagedList) ViewBag.products,
+            page => Url.Action(
+                "AdminIndex",
+                "Product",
+                new {
+                    page,
+                    SortOn = ViewBag.SortOn,
+                    orderBy = ViewBag.orderBy,
+                    pSortOn = ViewBag.SortOn
+                }),
+        new PagedListRenderOptions()
+        {
+            UlElementClasses = new [] { "pagination" },
+            ContainerDivClasses = new [] {"pagination-container"},
+            LiElementClasses = new string [] { "page-item" },
+            PageClasses = new string[] {"page-link"}
+        })
+    </nav>
+    <ul class="pagination"> 
+        <li class=""> @Html.ActionLink(
+            "Name",
+            "AdminIndex",
+            new {SortOn = "Name", orderBy = ViewBag.orderBy, pSortOn = ViewBag.SortOn},
+            new {@class = "btn btn-category nav-link-custom"}
+            )
+        </li>
+        <li class=""> @Html.ActionLink(
+            "Price",
+            "AdminIndex",
+            new {SortOn = "Price", orderBy = ViewBag.orderBy, pSortOn = ViewBag.SortOn},
+            new {@class = "btn btn-category nav-link-custom"}
+            )
+        </li>
+    </ul>
+    <partial name="_ProductTablePartial" model="@ViewBag.products"/>
+</div>

@@ -1,7 +1,7 @@
 @model NutryDairyASPApplication.Models.Product
 @using Microsoft.AspNetCore.Identity
-@inject UserManager<IdentityUser> UserManager
-@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
 
 @{
 ViewBag.Title = @Model.Name;

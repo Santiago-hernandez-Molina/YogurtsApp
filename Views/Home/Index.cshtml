@@ -3,34 +3,34 @@
 @{
 ViewData["Title"] = "NutryDairy";
 }
-<h1 class="text-center" ><span class='title-1'>Great </span><span class='title-2'>Valley</span></h1>
+<partial name="_TitlePartial"/>
 <div class="presentation">
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item w-100 active">
+                    <img src="https://cdn.pixabay.com/photo/2016/07/31/20/03/yogurt-1559869_1280.jpg" class="d-block" alt="...">
+                </div>
+                <div class="carousel-item w-100">
+                    <img src="https://cdn.pixabay.com/photo/2016/07/04/20/26/currants-1497328_1280.jpg" class="d-block" alt="...">
+                </div>
+                <div class="carousel-item w-100">
+                    <img src="https://cdn.pixabay.com/photo/2023/04/14/14/30/oatmeal-7925231_1280.jpg" class="d-block" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="https://scontent-bog1-1.xx.fbcdn.net/v/t39.30808-6/299990830_462003719275348_8951744443506894251_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=e3f864&_nc_ohc=gUxVShOQtPoAX-rcjol&_nc_ht=scontent-bog1-1.xx&oh=00_AfDkgOd21LzM6GWnULAPfm0r-219n3vuJrLqFGA8zfK3OQ&oe=646E0F9C" class="d-block" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="https://scontent-bog1-1.xx.fbcdn.net/v/t1.6435-9/118645738_2768724219896501_5386526836847089980_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=e3f864&_nc_ohc=UUy9RIzcqMMAX_WrCcC&_nc_oc=AQnEBrv38Uc4tSiKmo6ImWs0R4xgOqKSMWIZiadaEMWdPPNTLegBphNvHskicfCbgc2iTfwnI8CTFYfMUi8xyLNI&_nc_ht=scontent-bog1-1.xx&oh=00_AfAKYOV5ISl-Amyos528p_mhxIcGQoYRDb3cZ-a2beXOqQ&oe=649069C3" class="d-block" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="https://scontent-bog1-1.xx.fbcdn.net/v/t45.5328-4/94038361_2913767952045964_37397156419600384_n.jpg?stp=dst-jpg_s960x960&_nc_cat=100&ccb=1-7&_nc_sid=9ab401&_nc_ohc=OSlKkRWlO3kAX9AK95v&_nc_ht=scontent-bog1-1.xx&oh=00_AfACcV1cxZPHmX3Tf0KJFrzdTcF1aswpng0ORmXPmVCXdw&oe=646EE336" class="d-block" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
 </div>
 <div class="principal">
     <div class="cards-container-custom">

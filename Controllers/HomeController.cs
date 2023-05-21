@@ -19,7 +19,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        var data = _context.Products.Take(3).ToList();
+        var data = _context.Products.Take(3).OrderBy(p => p.Name).ToList();
         HomeVM homevm = new HomeVM()
         {
             products = data

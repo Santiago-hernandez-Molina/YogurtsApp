@@ -2,30 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 :root{
-    --strong-blue: #328dd8;
+    --strong-blue: #4D96FF;
     --light-blue: #C0EEF2;
     --dark-blue: #181823;
     --white-blue: #F8F5E4;
-    --green: #348104;
-    --yellow: #F7C04A;
+    --green: #6BCB77;
+    --yellow: #FFD93D;
+    --red: #FF6B6B;
 }
-.nav-link-custom:hover{
-    color: var(--green);
-}
-.container{
-    background: white;
-    color: var(--dark-blue);
-    border-radius: 5px;
-}
-
-legend{
-    color: var(--strong-blue);
-}
-
-a.card-link{
-    text-decoration: none;   
-}
-
 .nav-link-custom{
     color: var(--strong-blue);
     text-decoration: none;
@@ -34,6 +18,56 @@ a.card-link{
     text-align: center;
     user-select: none;
 }
+.nav-link-custom:hover{
+    color: var(--green);
+}
+
+h1.title-custom{
+    font-family: 'rubik';
+    padding: 10px;
+    top: 0;
+    margin: 0;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+.title-1{
+    background: #328dd8;
+    padding: 2px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-right: none;
+    color: var(--white-blue);
+    font-size: 1.5rem;
+}
+.title-2{
+    background: green;
+    border-left: none;
+    padding: 2px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: var(--white-blue);
+    font-size: 1.5rem;
+}
+.container-custom{
+    background: white;
+    color: var(--dark-blue);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+legend{
+    color: var(--strong-blue);
+}
+form a{
+    text-decoration: none;
+    color: var(--strong-blue);
+}
+a.card-link{
+    text-decoration: none;   
+}
+
+
 .btn{
     width: auto;
     min-width: 120px;
@@ -42,23 +76,37 @@ a.card-link{
     padding: 3px;
     border-radius: 2px;
     margin: 5px;
-    background: var(--yellow);
+    background: var(--green);
     color: var(--white-blue);
-    border: 1px solid var(--yellow);
+    border: 1px solid var(--green);
 }
 .btn:hover{
     cursor: pointer;
+    background: var(--yellow);
+    border: 1px solid var(--yellow);
     color: var(--white-blue);
-    background: var(--green);
-    border: 1px solid var(--green);
 }
 .btn-card{
-    background: var(--green);
-    border: 1px solid var(--green);
-}
-.btn-card:hover{
     background: var(--strong-blue);
     border: 1px solid var(--strong-blue);
+}
+.btn-card:hover{
+    background: var(--green);
+    border: 1px solid var(--green);
+    color: var(--white-blue);
+}
+.btn-category{
+    background: var(--red);
+    border: 1px solid var(--red);
+}
+.btn-category:hover{
+    background: var(--yellow);
+    border: 1px solid var(--yellow);
+    color: var(--white-blue);
+}
+.btn-category a{
+    text-decoration: none;
+    color: var(--white-blue);
 }
 
 @media (min-width: 768px) {

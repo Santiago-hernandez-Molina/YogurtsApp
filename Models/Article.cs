@@ -14,5 +14,6 @@ namespace NutryDairyASPApplication.Models
         public int BlogId { get; set; }
         [ForeignKey("BlogId")]
         public Blog Blog { get; set; } 
+
     }
 }

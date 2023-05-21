@@ -11,7 +11,7 @@ using NutryDairyASPApplication.Data;
 namespace NutryDairyASPApplication.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230520213754_User")]
+    [Migration("20230521000237_User")]
     partial class User
     {
         /// <inheritdoc />
@@ -290,7 +290,7 @@ namespace NutryDairyASPApplication.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("City");
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("NutryDairyASPApplication.Models.Department", b =>
@@ -307,7 +307,7 @@ namespace NutryDairyASPApplication.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Department");
+                    b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("NutryDairyASPApplication.Models.ElaborationProcess", b =>

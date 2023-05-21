@@ -1,4 +1,4 @@
-namespace ustaTickets.Data.Static
+namespace NutryDairyASPApplication.Data.Static
 {
     public class UserRoles
     {
