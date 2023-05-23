@@ -33,7 +33,7 @@
     border-radius: 10px;
 }
 .nav-sep{
-    border-bottom: 1px solid var(--strong-blue) ;
+    border-bottom: 2px solid var(--strong-blue) ;
 }
 .nav-section>ul{
     display: flex;
@@ -52,6 +52,7 @@
     place-items: center;
     height: 30px;
     font-family: 'Rubik', sans-serif;
+    font-weight: bold;
 }
 .btn-enable{
     width: 0;
