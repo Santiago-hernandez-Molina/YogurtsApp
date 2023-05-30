@@ -137,11 +137,13 @@
     }
     .nav-item-custom{
         color: var(--white-blue);
-        margin-bottom: 10px;
-        padding-bottom: 5px ;
+        text-align: start;
+        margin-bottom: 20px;
+        padding-bottom: 10px ;
         border-radius: 5px;
         width: 70%;
         font-size: 12px;
+        display: grid;
     }
     .nav-item:hover{
         box-shadow: none;

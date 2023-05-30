@@ -1,0 +1,35 @@
+.badge {
+  text-align: center;
+  text-justify: center;
+  position: relative;
+  top: -10px;
+  right: -5px;
+  background-color: var(--red);
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+}
+.nav-item-custom{
+    list-style: none;
+    padding: 5px;
+    display: grid;
+    place-items: center;
+    height: 30px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+}
+@media(max-width:800px){
+
+    .nav-item-custom{
+        color: var(--white-blue);
+        text-align: start;
+        margin-bottom: 20px;
+        padding-bottom: 10px ;
+        border-radius: 5px;
+        width: 70%;
+        font-size: 12px;
+        display: grid;
+    }
+}

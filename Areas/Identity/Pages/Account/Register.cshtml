@@ -1,7 +1,7 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+ViewData["Title"] = "Register";
 }
 
 
@@ -42,11 +42,18 @@
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Input.CityId" class="form-control" autocomplete="new-password" aria-required="true" />
+                <select name="CityId" class="form-select form-select-sm mb-3">
+                    @foreach (var item in Model.Cities)
+                    {
+                    <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
                 <label asp-for="Input.CityId">Ciudad</label>
                 <span asp-validation-for="Input.CityId" class="text-danger"></span>
             </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Registrarse</button>
+            <div class="form-floating mb-3">
+                <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary" style="margin: 0;">Registrarse</button>
+            </div>
         </form>
     </div>
 </div>

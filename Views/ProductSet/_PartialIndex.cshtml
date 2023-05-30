@@ -1,0 +1,25 @@
+@model IEnumerable<ProductSet>
+<div>
+    <table class="table table-responsive-sm">
+        <thead style="background: var(--strong-blue); color: white;">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Category in Model)
+            {
+            <tr>
+                <th scope="row">@Category.Id</th>
+                <td>@Category.Name</td>
+                <td class="row">
+                    <button type="button" class="col-sm-4 m-2 btn btn-sm btn-outline-primary">Edit</button>
+                    <button type="button" class="col-sm-4 m-2 btn btn-sm btn-outline-danger">Delete</button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

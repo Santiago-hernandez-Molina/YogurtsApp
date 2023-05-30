@@ -1,0 +1,61 @@
+@using NutryDairyASPApplication.ViewModels;
+@model ShoppingCartVM
+
+@{
+ViewData["Title"] = "ShoppingCart Summary";
+}
+
+<div class="row m-2 d-flex justify-content-center">
+    <h3 class="text-center">shoppingCart Summary</h3>
+    <div class="col-md-8">
+        <table class="table table-responsive-sm">
+            <thead>
+                <tr>
+                    <th>Selected Amount</th>
+                    <th>product</th>
+                    <th>price</th>
+                    <th>subtotal</th>
+                    <th>Add / Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
+                {
+                <tr scope="row">
+                    <td class="align-middle">@item.Amount</td>
+                    <td class="align-middle">@item.Product.Name</td>
+                    <td class="align-middle text-nowrap">@item.Product.Price.ToString("c")</td>
+                    <td class="align-middle">@((item.Amount * item.Product.Price).ToString("c"))</td>
+                    <td class="align-middle text-center">
+                        <a  class="text-success"
+                            asp-controller="Order"
+                            asp-action="AddItemToShoppingCart"
+                            asp-route-id="@item.Product.Id">
+                            <i class="bi bi-bag-plus-fill"></i>
+                        </a>
+                        <a  class="text-danger"
+                            asp-controller="Order"
+                            asp-action="RemoveItemFromShoppingCart"
+                            asp-route-id="@item.Product.Id">
+                            <i class="bi bi-bag-x-fill"></i>
+                        </a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3"><b>Total: </b></td>
+                    <td class="text-nowrap">@Model.ShoppingCartTotal.ToString("c")</td>
+                    <input type="hidden" id="total" name="total" value="@Model.ShoppingCartTotal">
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="text-center">
+        <div class="btn-group">
+            <a asp-action="CompleteOrder" class="btn btn-custom">Complete Order</a>
+            <a asp-controller="Product" asp-action="Index" class="btn btn-custom btn-card">Add More items</a>
+        </div>
+    </div>
+</div>

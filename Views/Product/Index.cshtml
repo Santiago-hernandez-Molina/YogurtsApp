@@ -18,7 +18,14 @@ Layout = "_Layout";
                 <div class="card-body">
                     <h5 class="card-title">@Product.Name</h5>
                     <p class="card-text">@Product.Description</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <div class="btn-group">
+                        <a  asp-controller="Order"
+                            asp-action="AddItemToShoppingCart"
+                            asp-route-id="@Product.Id"
+                            class="btn btn-success text-white btn-sm">
+                            <i class="bi bi-cart-plus"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,57 +1,69 @@
 @model Product;
-<div class="col-md-8 offset-md-2">
-    <form asp-action="Edit" enctype="multipart/form-data">
+
+@{
+    Model.Proteins = Math.Round(Model.Proteins,2);
+    Model.Price = Math.Round(Model.Price,2);
+    Model.Fats = Math.Round(Model.Fats,2);
+    Model.Calories = Math.Round(Model.Calories,2);
+}
+
+<div class="col-md-6 offset-md-3">
+    <form asp-action="Edit" class="m-2" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <legend>Edit for Product Id: @Model.Id</legend>
-        <div class="mb-3">
-            <label asp-for="Name" class="form-label"></label>
-            <input type="text" asp-for="Name" class="form-control">
-            <span asp-validation-for="Name" class="text-danger"></span>
+        <legend>Edición del producto</legend>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label asp-for="Name" class="form-label"></label>
+                <input type="text" asp-for="Name" class="form-control form-control-sm">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="ProductSetId" class="form-label"></label>
+                <select name="ProductSetId" class="form-select form-select-sm mb-3">
+                    @foreach (var item in ViewBag.Categories)
+                    {
+                    <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="ProductSetId" class="text-danger"></span>
+            </div>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 form-group">
             <label asp-for="Description" class="form-label"></label>
-            <textarea rows="4" style="resize: none" asp-for="Description" class="form-control"></textarea>
+            <textarea rows="4" style="resize: none" asp-for="Description" class="form-control form-control-sm"></textarea>
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="ProductSetId" class="form-label"></label>
-            <select name="ProductSetId" class="form-select form-select-sm mb-3">
-                @foreach (var item in ViewBag.Categories)
-                {
-                <option value="@item.Id">@item.Name</option>
-                }
-            </select>
-            <span asp-validation-for="ProductSetId" class="text-danger"></span>
-        </div>
-        <div class="mb-3">
             <label asp-for="Archivo" class="form-label"></label>
-            <input type="file" asp-for="Archivo" class="form-control">
+            <input type="file" asp-for="Archivo" class="form-control form-control-sm">
             <span asp-validation-for="Archivo" class="text-danger"></span>
         </div>
-        <div class="mb-3">
-            <label asp-for="Price" class="form-label"></label>
-            <input type="number" asp-for="Price" class="form-control">
-            <span asp-validation-for="Price" class="text-danger"></span>
-        </div>
-        <div class="mb-3">
-            <label asp-for="Proteins" class="form-label"></label>
-            <input type="number" asp-for="Proteins" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label asp-for="Fats" class="form-label"></label>
-            <input type="number" asp-for="Fats" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label asp-for="Calories" class="form-label"></label>
-            <input type="number" asp-for="Calories" class="form-control">
+        <div class="row">
+            <div class="mb-3 col-md-6">
+                <label asp-for="Price" class="form-label"></label>
+                <input type="number" asp-for="Price" class="form-control form-control-sm">
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="Proteins"  class="form-label"></label>
+                <input type="number" asp-for="Proteins" class="form-control form-control-sm">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="Fats" class="form-label"></label>
+                <input type="number" asp-for="Fats" class="form-control form-control-sm">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="Calories" class="form-label"></label>
+                <input type="number" asp-for="Calories" class="form-control form-control-sm">
+            </div>
         </div>
         <div class="mb-3">
             <label asp-for="ImagePath" class="form-label"></label>
-            <input type="text" asp-for="ImagePath" class="form-control">
+            <input type="text" asp-for="ImagePath" class="form-control form-control-sm" readonly>
         </div>
         <div class="mb-3">
             <label asp-for="Stock" class="form-label"></label>
-            <input type="number" asp-for="Stock" class="form-control">
+            <input type="number" asp-for="Stock" class="form-control form-control-sm">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

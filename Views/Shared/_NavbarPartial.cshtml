@@ -24,12 +24,9 @@
             </li>
             @if (User.Identity.IsAuthenticated)
             {
-            <li class="nav-item-custom">
-                <a id="Carrito" class="nav-link-custom">
-                    Carrito  <i class="bi bi-basket3-fill"></i></a>
-            </li>
+            @await Component.InvokeAsync("ShoppingCartSummary")
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-sm btn-category dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Bienvenido
                 </button>
                 <ul class="dropdown-menu">
@@ -48,7 +45,7 @@
                     <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                         <li class="nav-item-custom" style="margin-bottom: 5px;">
                             <button
-                                type="submit" class="btn">
+                                type="submit" class="btn btn-custom">
                                 Cerrar Sesión <i class="bi bi-box-arrow-right"></i></button>
                         </li>
                     </form>
@@ -58,7 +55,7 @@
             else
             {
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-sm btn-category dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Iniciar Sesión
                 </button>
                 <ul class="dropdown-menu">

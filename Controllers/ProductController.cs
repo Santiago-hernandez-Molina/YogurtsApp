@@ -213,4 +213,10 @@ public class ProductController : Controller
         }
         return View("Delete",Product);
     }
+    
+    public Product GetProductById(int id)
+    {
+        return _context.Products
+            .FirstOrDefault(p => p.Id == id);
+    }
 }

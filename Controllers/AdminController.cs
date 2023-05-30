@@ -22,4 +22,9 @@ public class AdminController : Controller
         };
         return View(AdminVM);
     }
+    public IActionResult MetodoDeAccion()
+    {
+        // Lógica para obtener el contenido actualizado
+        return PartialView("_Div");
+    }
 }
