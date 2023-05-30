@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Data"
   ],
-  "SelectedNode": "\\NutryDairyASPApplication.sln",
+  "SelectedNode": "\\Data\\AppDbInitializer.cs",
   "PreviewInSolutionExplorer": false
 }
