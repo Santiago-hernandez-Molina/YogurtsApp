@@ -69,7 +69,7 @@ public class ProductController : Controller
 
     [HttpPost]
     [Authorize(Roles = UserRoles.Admin)]
-    public IActionResult Create([Bind("Id, Name, Archivo, Description, Price, Proteins, Calories, Fats, Stock, ProductSetId")]Product data)
+    public IActionResult Create([Bind("Id, Name, Quantity, Archivo, Description, Price, Proteins, Calories, Fats, Stock, ProductSetId")]Product data)
     {
         if (!ModelState.IsValid)
         {
@@ -77,10 +77,6 @@ public class ProductController : Controller
         }
 
         string[] allowedContentTypes = { "image/jpeg", "image/png", "image/gif" };
-        if (!ModelState.IsValid)
-        {
-            return View(data);
-        }
         string ruta = "://localhost/nutredairy/";
 
         if (data.Archivo != null && data.Archivo.Length > 0 )
@@ -150,7 +146,7 @@ public class ProductController : Controller
 
     [HttpPost]
     [Authorize(Roles = UserRoles.Admin)]
-    public IActionResult Edit(int id, [Bind("Id, Name, ImagePath, Archivo, Description, Price, Proteins, Calories, Fats, Stock, ProductSetId")]Product data)
+    public IActionResult Edit(int id, [Bind("Id, Name, Quantity, ImagePath, Archivo, Description, Price, Proteins, Calories, Fats, Stock, ProductSetId")]Product data)
     {
         string[] allowedContentTypes = { "image/jpeg", "image/png", "image/gif" };
         if (!ModelState.IsValid  || id != data.Id)
@@ -213,7 +209,7 @@ public class ProductController : Controller
         }
         return View("Delete",Product);
     }
-    
+
     public Product GetProductById(int id)
     {
         return _context.Products

@@ -29,18 +29,18 @@ Layout = "_Layout";
         })
     </nav>
     <ul class="pagination"> 
-        <li class=""> @Html.ActionLink(
+        <li class="m-2"> @Html.ActionLink(
             "Name",
             "AdminIndex",
             new {SortOn = "Name", orderBy = ViewBag.orderBy, pSortOn = ViewBag.SortOn},
-            new {@class = "btn btn-category nav-link-custom"}
+            new {@class = "btn btn-sm m-2 btn-category nav-link-custom text-center"}
             )
         </li>
-        <li class=""> @Html.ActionLink(
+        <li class="m-2"> @Html.ActionLink(
             "Price",
             "AdminIndex",
             new {SortOn = "Price", orderBy = ViewBag.orderBy, pSortOn = ViewBag.SortOn},
-            new {@class = "btn btn-category nav-link-custom"}
+            new {@class = "btn btn-sm m-2 btn-category nav-link-custom text-center"}
             )
         </li>
     </ul>

@@ -19,11 +19,22 @@ Layout = "_Layout";
         </div>
         <div class="col">
             <p class="detail-p">@Model.Description</p>
+            <div class="btn-group">
             @if (SignInManager.IsSignedIn(User))
             {
-            <button class="btn btn-bought" type="button">Añadir al carrito</button>
+                <a  asp-controller="Order"
+                    asp-action="AddItemToShoppingCart"
+                    asp-route-id="@Model.Id"
+                    class="btn btn-success btn-sm text-white"
+                    style="font-style: normal;">
+                    <i class="bi bi-cart-plus">Añadir al carrito</i>
+                </a>
             }
-            <a class="btn">Ingredientes</a>
+            <a class="btn btn-light btn-sm"
+               style="font-style: italic;">
+                Ingredientes
+            </a>
+            </div>
         </div>
     </div>
 </section>

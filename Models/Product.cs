@@ -17,6 +17,9 @@ namespace NutryDairyASPApplication.Models
         [Display(Name="Descripción")]
         public string Description { get; set; }
 
+        [Display(Name="Cantidad")]
+        public float Quantity { get; set; }
+
         [Required]
         [Display(Name="Precio")]
         public decimal Price { get; set; }
