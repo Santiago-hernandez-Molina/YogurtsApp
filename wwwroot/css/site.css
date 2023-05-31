@@ -21,6 +21,11 @@
 .nav-link-custom:hover{
     color: var(--green);
 }
+.title{
+    font-family: 'rubik';
+    color: var(--strong-blue);
+    font-weight: bold;
+}
 
 h1.title-custom{
     font-family: 'rubik';

@@ -5,17 +5,17 @@
 ViewData["Title"] = "ShoppingCart Summary";
 }
 
-<div class="row m-2 d-flex justify-content-center">
-    <h3 class="text-center">shoppingCart Summary</h3>
-    <div class="col-md-8">
-        <table class="table table-responsive-sm">
+<div class="d-flex flex-column m-2 justify-content-center">
+    <h3 class="text-center title">Carrito de productos</h3>
+    <div class="table-responsive">
+        <table class="table table-sm table-borderless table-bordered table-hover text-center">
             <thead>
                 <tr>
-                    <th>Selected Amount</th>
-                    <th>product</th>
-                    <th>price</th>
-                    <th>subtotal</th>
-                    <th>Add / Remove</th>
+                    <th>Cantidad</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Subtotal</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -24,21 +24,25 @@ ViewData["Title"] = "ShoppingCart Summary";
                 <tr scope="row">
                     <td class="align-middle">@item.Amount</td>
                     <td class="align-middle">@item.Product.Name</td>
-                    <td class="align-middle text-nowrap">@item.Product.Price.ToString("c")</td>
-                    <td class="align-middle">@((item.Amount * item.Product.Price).ToString("c"))</td>
-                    <td class="align-middle text-center">
-                        <a  class="text-success"
+                    <td class="align-middle text-nowrap text-end">@item.Product.Price.ToString("c")</td>
+                    <td class="align-middle text-end">@((item.Amount * item.Product.Price).ToString("c"))</td>
+                    <td class="align-middle">
+                        <span class="d-flex flex-column justify-content-center">
+                        <a  class="text-success d-flex justify-content-evenly"
                             asp-controller="Order"
                             asp-action="AddItemToShoppingCart"
+                            style="text-decoration: none;"
                             asp-route-id="@item.Product.Id">
-                            <i class="bi bi-bag-plus-fill"></i>
+                            Añadir<i class="bi bi-bag-plus-fill"></i>
                         </a>
-                        <a  class="text-danger"
+                        <a  class="text-danger d-flex justify-content-evenly"
                             asp-controller="Order"
                             asp-action="RemoveItemFromShoppingCart"
+                            style="text-decoration: none;"
                             asp-route-id="@item.Product.Id">
-                            <i class="bi bi-bag-x-fill"></i>
+                            Quitar<i class="bi bi-bag-x-fill"></i>
                         </a>
+                        </span>
                     </td>
                 </tr>
                 }
@@ -46,16 +50,58 @@ ViewData["Title"] = "ShoppingCart Summary";
             <tfoot>
                 <tr>
                     <td colspan="3"><b>Total: </b></td>
-                    <td class="text-nowrap">@Model.ShoppingCartTotal.ToString("c")</td>
+                    <td class="text-nowrap text-end">@Model.ShoppingCartTotal.ToString("c")</td>
+                    <td></td>
                     <input type="hidden" id="total" name="total" value="@Model.ShoppingCartTotal">
                 </tr>
             </tfoot>
         </table>
     </div>
     <div class="text-center">
-        <div class="btn-group">
-            <a asp-action="CompleteOrder" class="btn btn-custom">Complete Order</a>
-            <a asp-controller="Product" asp-action="Index" class="btn btn-custom btn-card">Add More items</a>
+        <div class="col">
+            @*<a asp-action="CompleteOrder" class="btn btn-custom">Complete Order</a>*@
+            <div id="paypal-btn" class="row"></div>
+            <a asp-controller="Product" asp-action="Index" class="btn btn-custom btn-card row">Añadir más productos</a>
         </div>
     </div>
 </div>
+
+@if (@Model.ShoppingCartTotal > (decimal)10){
+    @section Scripts {
+     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+     <script>
+         const _total = parseFloat($("#total").val().replace(",", "."));
+         paypal.Button.render({
+             env: 'sandbox',
+             client: {
+             sandbox: 'AdEOqZzYZU5B5tjiJKEGjgqaOFZ-cHrf9zKVOtZx2jFopqvlseHwMUmMJFY7tortWvxZS46_3W8GvtWh'
+         },
+             locale: 'en_US',
+             style: {
+             size: 'small',
+             color: 'gold',
+             shape: 'pill'
+         },
+         commit: true,
+         payment: function (data, actions) {
+             return actions.payment.create({
+             transactions: [{
+             amount: {
+             total: _total,
+             currency: 'USD'
+         }
+         }]
+         });
+         },
+         onAuthorize: function (data, actions) {
+             return actions.payment.execute().then(function () {
+             var url = '@Url.Action("CompleteOrder", "Order", new { })'
+             window.location.href = url;
+         });
+         }
+         }, '#paypal-btn');
+     </script>
+    }
+}else{
+<p class="text-center">Compra minima de 10 USD</p>
+}
