@@ -13,7 +13,6 @@ ViewData["Title"] = "Admin";
             <button class="nav-link active pill" id="v-pills-product-tab" data-bs-toggle="pill" data-bs-target="#v-pills-product" type="button" role="tab" aria-controls="v-pills-product" aria-selected="true">Productos</button>
             <button class="nav-link" id="v-pills-blog-tab" data-bs-toggle="pill" data-bs-target="#v-pills-blog" type="button" role="tab" aria-controls="v-pills-blog" aria-selected="false">Blog</button>
             <button class="nav-link" id="v-pills-categories-tab" data-bs-toggle="pill" data-bs-target="#v-pills-categories" type="button" role="tab" aria-controls="v-pills-categories" aria-selected="false">Categorias</button>
-            <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Pedidos</button>
         </div>
         <div class="tab-content col-md-9" id="v-pills-tabContent">
             <div class="tab-pane fade show active" id="v-pills-product" role="tabpanel" aria-labelledby="v-pills-product-tab">
@@ -29,7 +28,16 @@ ViewData["Title"] = "Admin";
                 </div>
             </div>
             <div class="tab-pane fade" id="v-pills-blog" role="tabpanel" aria-labelledby="v-pills-blog-tab">
-                <a asp-controller="Product" asp-action="Index" class="btn">Editar Blogs</a>
+                <div class="card">
+                    <div class="card-header">
+                        Editar Blogs
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Número Total de Blogs: @Model.TotalBlogs</h5>
+                        <p class="card-text"></p>
+                        <a asp-controller="Blog" asp-action="AdminIndex" class="btn btn-card">Ver Todos los Blogs</a>
+                    </div>
+                </div>
             </div>
             <div class="tab-pane fade" id="v-pills-categories" role="tabpanel" aria-labelledby="v-pills-categories-tab">
                 <div id="categories"></div>

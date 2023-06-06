@@ -24,7 +24,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<ElaborationProcess> ElaborationProcess { get; set; }
     public DbSet<Blog> Blogs { get; set; }
     public DbSet<Article> Articles { get; set; }
-    public DbSet<Paragraph> Paragraph { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderItem> OrderItems { get; set; }
     public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }

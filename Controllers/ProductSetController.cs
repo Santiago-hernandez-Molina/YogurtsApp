@@ -31,13 +31,13 @@ namespace NutryDairyASPApplication.Controllers
 
         [HttpPost]
         [Authorize(Roles = UserRoles.Admin)]
-        public IActionResult Create([Bind("Name")]Product data)
+        public IActionResult Create([Bind("Name")]ProductSet data)
         {
             if (!ModelState.IsValid)
             {
                 return View(data);
             }
-            _context.Products.Add(data);
+            _context.ProductSets.Add(data);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index),"Admin");
         }
@@ -51,13 +51,12 @@ namespace NutryDairyASPApplication.Controllers
             {
                 return BadRequest("Bad Request");
             }
-            var Product = _context.Products.Find(id);
-            if (Product == null)
+            var ProductSet = _context.ProductSets.Find(id);
+            if (ProductSet == null)
             {
                 return NotFound("Not Found");
             }
-            ViewBag.Categories = _context.ProductSets.ToList();
-            return View(Product);
+            return View(ProductSet);
         }
 
         [HttpPost]
@@ -78,7 +77,7 @@ namespace NutryDairyASPApplication.Controllers
         [Authorize(Roles = UserRoles.Admin)]
         public IActionResult Delete(int id)
         {
-            var data = _context.Products.FirstOrDefault(a=> a.Id == id);
+            var data = _context.ProductSets.FirstOrDefault(a=> a.Id == id);
             if (data == null) { return View("NotFound"); }
             return View(data);
         }

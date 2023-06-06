@@ -1,0 +1,23 @@
+.diagonal-gradient {
+    border: none;
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    color: white;
+    opacity: 0.8;
+    box-shadow:
+    inset 0 -3em 3em rgba(0,0,0,0.3),
+    0.3em 0.5em 0.5em rgba(0,0,0,0.3);
+    transition: ease-out .15s;
+}
+.diagonal-gradient:hover{
+    transform: scale(0.98);
+    transition: ease-in .15s;
+    cursor: pointer;
+}
+p{
+    max-height: 120px;
+    overflow: hidden;
+}
+@media(max-width:900px){
+}

@@ -1,0 +1,44 @@
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+
+@{
+ViewBag.Title = "Articles";
+Layout = "_Layout";
+}
+<partial name="_TitlePartial"/>
+<div class="d-flex flex-column align-items-center" style="background: var(--strong-blue); padding: 20px;">
+    <nav aria-label="Page navigation example">
+        @Html.PagedListPager(
+        (IPagedList) ViewBag.articles,
+            page => Url.Action(
+                "Index",
+                "Article",
+                new {
+                    page,
+                    SortOn = ViewBag.SortOn,
+                    orderBy = ViewBag.orderBy,
+                    BlogId = ViewBag.BlogId,
+                    pSortOn = ViewBag.SortOn
+                }),
+        new PagedListRenderOptions()
+        {
+            UlElementClasses = new [] { "pagination" },
+            ContainerDivClasses = new [] {"pagination-container"},
+            LiElementClasses = new string [] { "page-item" },
+            PageClasses = new string[] {"page-link"}
+        })
+    </nav>
+    <div class="cards-article-container">
+        @foreach (var Article in ViewBag.articles)
+        {
+            <div class="article-card m-2">
+                <img src="@Article.RelatedImagePath" alt="">
+                <div class="card-article-content row m-2">
+                    <h3 class="title col">@Article.Title</h3>
+                    <a asp-action="Detail" asp-route-id="@Article.Id" class="btn btn-article col">Ver</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

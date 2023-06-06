@@ -16,11 +16,12 @@ namespace NutryDairyASPApplication.Controllers
         private readonly ProductController _productController;
         private readonly ShoppingCart _shoppingCart;
 
-        public OrderController(ApplicationDbContext context)
+        public OrderController(ApplicationDbContext context, ShoppingCart shoppingCart)
         {
             _context = context;
             _productController = new ProductController(context);
-            _shoppingCart = new ShoppingCart(context);
+            _shoppingCart = shoppingCart;
+
         }
 
         [Authorize]

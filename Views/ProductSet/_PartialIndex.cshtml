@@ -1,6 +1,7 @@
 @model IEnumerable<ProductSet>
-<div>
-    <table class="table table-responsive-sm">
+<div class="m-2">
+    <a asp-action="Create" class="btn btn-custom">Crear</a>
+    <table class="table table-responsive-sm m-1">
         <thead style="background: var(--strong-blue); color: white;">
             <tr>
                 <th scope="col">Id</th>
@@ -15,8 +16,8 @@
                 <th scope="row">@Category.Id</th>
                 <td>@Category.Name</td>
                 <td class="row">
-                    <button type="button" class="col-sm-4 m-2 btn btn-sm btn-outline-primary">Edit</button>
-                    <button type="button" class="col-sm-4 m-2 btn btn-sm btn-outline-danger">Delete</button>
+                    <a type="button" asp-action="Edit" asp-route-id="@Category.Id" class="col-sm-4 m-2 btn btn-sm btn-outline-primary">Edit</a>
+                    <a type="button" asp-action="Delete" asp-route-id="@Category.Id" class="col-sm-4 m-2 btn btn-sm btn-outline-danger">Delete</a>
                 </td>
             </tr>
             }

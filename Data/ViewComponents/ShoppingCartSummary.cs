@@ -8,10 +8,10 @@ namespace NutryDairyASPApplication.Data.ViewComponents
         private readonly ShoppingCart _shoppingcart;
         public ApplicationDbContext _context { get; set; }
 
-        public ShoppingCartSummary(ApplicationDbContext context)
+        public ShoppingCartSummary(ApplicationDbContext context, ShoppingCart shoppingCart)
         {
             _context = context;
-            _shoppingcart = new ShoppingCart(context);
+            _shoppingcart = shoppingCart;
         }
 
         public IViewComponentResult Invoke()

@@ -1,0 +1,15 @@
+@model ProductSet;
+
+<div class="col-md-8 offset-md-2">
+    <form method="post" class="m-2" asp-action="Delete" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <legend class="text-center">Editar categoria</legend>
+        <div class="form-group col-md-4 m-1">
+            <label asp-for="Name" class="form-label"></label>
+            <input type="text" asp-for="Name" class="form-control form-control-sm">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <input type="text" asp-for="Id" hidden>
+        <button type="submit" class="btn btn-custom btn-category m-0 m-1">Borrar</button>
+    </form>
+</div>

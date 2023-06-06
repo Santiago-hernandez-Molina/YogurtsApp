@@ -1,0 +1,28 @@
+@model Article;
+
+<div class="col-md-8 offset-md-2">
+    <form method="post" class="m-2" asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="text" asp-for="BlogId" hidden>
+        <input asp-for="Id" hidden>
+        <legend class="text-center title">Editar Articulo</legend>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label asp-for="Title" class="form-label"></label>
+                <input type="text" asp-for="Title" class="form-control form-control-sm">
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3 form-group">
+                <label asp-for="Paragraphs" class="form-label"></label>
+                <textarea rows="10" style="resize: none" asp-for="Paragraphs" class="form-control form-control-sm"></textarea>
+                <span asp-validation-for="Paragraphs" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label asp-for="RelatedImagePath" class="form-label"></label>
+            <input type="text" asp-for="RelatedImagePath" class="form-control form-control-sm">
+            <span asp-validation-for="RelatedImagePath" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-custom">Submit</button>
+    </form>
+</div>

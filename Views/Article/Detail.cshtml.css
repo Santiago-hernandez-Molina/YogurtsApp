@@ -1,0 +1,16 @@
+.article-title{
+    font-weight: bold;
+}
+.image-article{
+    width: 100%;
+}
+.article-content{
+    font-size: 1.2em;
+    text-align: justify;
+    padding: 20px;
+    width: 100%;
+}
+.article-image{
+    display: grid;
+    place-items: center;
+}

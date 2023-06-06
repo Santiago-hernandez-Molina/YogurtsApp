@@ -13,7 +13,7 @@
         <header>
             <partial name="_NavbarPartial"/>
         </header>
-        <div>
+        <div style="overflow: auto;">
             <main role="main">
                 <section class="presentation-custom" style="padding-top: 20vh;">
                     <div class="container container-custom">
@@ -21,14 +21,14 @@
                     </div>
                 </section>
             </main>
+            <footer class="border-top footer text-muted">
+                <div class="container" style="color: var(--dark-blue);">
+                    &copy; 2023 - NutryDairyASPApplication - <a asp-area="" asp-controller="Home" asp-action="Privacy" 
+                        >Privacy</a>
+                </div>
+            </footer>
         </div>
 
-        <footer class="border-top footer text-muted">
-            <div class="container" style="color: var(--dark-blue);">
-                &copy; 2023 - NutryDairyASPApplication - <a asp-area="" asp-controller="Home" asp-action="Privacy" 
-                    >Privacy</a>
-            </div>
-        </footer>
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>

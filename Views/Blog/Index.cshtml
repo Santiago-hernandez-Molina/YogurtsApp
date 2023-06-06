@@ -1,0 +1,52 @@
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+
+@{
+ViewBag.Title = "Blogs";
+Layout = "_Layout";
+}
+
+<partial name="_TitlePartial"/>
+<div class="d-flex justify-content-center w-100 p-2" style="background: var(--strong-blue);">
+    <nav aria-label="Page navigation example m-2">
+        @Html.PagedListPager(
+        (IPagedList) ViewBag.blogs,
+            page => Url.Action(
+                "Index",
+                "Blog",
+                new {
+                    page,
+                    SortOn = ViewBag.SortOn,
+                    orderBy = ViewBag.orderBy,
+                    pSortOn = ViewBag.SortOn
+                }),
+        new PagedListRenderOptions()
+        {
+            UlElementClasses = new [] { "pagination" },
+            ContainerDivClasses = new [] {"pagination-container"},
+            LiElementClasses = new string [] { "page-item" },
+            PageClasses = new string[] {"page-link"}
+        })
+    </nav>
+</div>
+<div class="d-flex flex-wrap justify-content-evenly align-items-center content" style="background: var(--strong-blue); padding: 10px;">
+    @foreach (var Product in ViewBag.blogs)
+    {
+    <a asp-controller="Article" asp-action="Index" asp-route-id="@Product.Id"
+        style="width: 450px; overflow: hidden; text-decoration: none;">
+        <div class="card mb-3 m-2 diagonal-gradient"
+            style="background-image: linear-gradient(rgba(0, 0, 0, 0.98),
+            rgba(0, 0, 0, 0.92),rgba(0, 0, 0, 0.75), rgba(0, 100, 255, 0.3)), url(@Product.ImagePath);">
+            <div class="row g-0">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title title">@Product.Name</h5>
+                        <p class="card-text">@Product.Description</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+    }
+</div>

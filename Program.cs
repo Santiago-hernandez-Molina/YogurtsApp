@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using NutryDairyASPApplication.Controllers;
 using NutryDairyASPApplication.Data;
 using NutryDairyASPApplication.Data.Cart;
 using NutryDairyASPApplication.Models;
@@ -17,8 +18,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     )
 ); 
 
+//builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+builder.Services.AddScoped<OrderController>();
+
 builder.Services.AddSession();
 
 //builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
@@ -55,9 +60,10 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseSession();
 
+app.UseAuthentication();
 app.UseAuthorization();
+app.UseSession();
 
 AppDbInitializer.Seed(app);
 AppDbInitializer.SeedUserAndRolesAsync(app).Wait();

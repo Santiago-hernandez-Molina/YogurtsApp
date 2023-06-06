@@ -8,22 +8,20 @@
         Layout = "/Areas/Identity/Pages/_Layout.cshtml";
     }
 }
-<div style="padding: 50px;">
-    <h1>Manage your account</h1>
 
-    <div>
-        <h2>Change your account settings</h2>
-        <hr />
-        <div class="row">
-            <div class="col-md-3">
-                <partial name="_ManageNav" />
-            </div>
-            <div class="col-md-9">
-                @RenderBody()
-            </div>
+<h1 class="text-center title">Manage your account</h1>
+
+<div class="container m-4">
+    <h2 class="text-center title">Change your account settings</h2>
+    <hr />
+    <div class="col-md-8 offset-md-2">
+        <partial name="_ManageNav" />
+        <div class="col w-100 offset-md-3">
+            @RenderBody()
         </div>
     </div>
 </div>
+
 @section Scripts {
-@RenderSection("Scripts", required: false)
+    @RenderSection("Scripts", required: false)
 }

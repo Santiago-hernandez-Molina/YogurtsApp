@@ -42,7 +42,7 @@ ViewData["Title"] = "Register";
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <select name="CityId" class="form-select form-select-sm mb-3">
+                <select name="Input.CityId" class="form-select form-select-sm mb-3">
                     @foreach (var item in Model.Cities)
                     {
                     <option value="@item.Id">@item.Name</option>

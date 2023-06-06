@@ -8,7 +8,7 @@ namespace NutryDairyASPApplication.Models
         [Key]
         public int Id { get; set; }
         public string Title { get; set; }
-        public List<Paragraph> Paragraphs { get; set; }
+        public string Paragraphs { get; set; }
         public string RelatedImagePath { get; set; }
 
         public int BlogId { get; set; }

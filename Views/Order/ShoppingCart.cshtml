@@ -5,7 +5,7 @@
 ViewData["Title"] = "ShoppingCart Summary";
 }
 
-<div class="d-flex flex-column m-2 justify-content-center">
+<div class="d-flex scroll-hidden flex-column m-2 justify-content-center">
     <h3 class="text-center title">Carrito de productos</h3>
     <div class="table-responsive">
         <table class="table table-sm table-borderless table-bordered table-hover text-center">
@@ -58,50 +58,49 @@ ViewData["Title"] = "ShoppingCart Summary";
         </table>
     </div>
     <div class="text-center">
-        <div class="col">
+        <div class="row m-4">
             @*<a asp-action="CompleteOrder" class="btn btn-custom">Complete Order</a>*@
-            <div id="paypal-btn" class="row"></div>
-            <a asp-controller="Product" asp-action="Index" class="btn btn-custom btn-card row">Añadir más productos</a>
+            <a asp-controller="Product" asp-action="Index" class="btn btn-custom btn-card col">Añadir más productos</a>
         </div>
     </div>
+    <partial name="_ConfirmOrderPartial"/>
 </div>
-
-@if (@Model.ShoppingCartTotal > (decimal)10){
-    @section Scripts {
-     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
-     <script>
-         const _total = parseFloat($("#total").val().replace(",", "."));
-         paypal.Button.render({
-             env: 'sandbox',
-             client: {
-             sandbox: 'AdEOqZzYZU5B5tjiJKEGjgqaOFZ-cHrf9zKVOtZx2jFopqvlseHwMUmMJFY7tortWvxZS46_3W8GvtWh'
-         },
-             locale: 'en_US',
-             style: {
-             size: 'small',
-             color: 'gold',
-             shape: 'pill'
-         },
-         commit: true,
-         payment: function (data, actions) {
-             return actions.payment.create({
-             transactions: [{
-             amount: {
-             total: _total,
-             currency: 'USD'
-         }
-         }]
-         });
-         },
-         onAuthorize: function (data, actions) {
-             return actions.payment.execute().then(function () {
-             var url = '@Url.Action("CompleteOrder", "Order", new { })'
-             window.location.href = url;
-         });
-         }
-         }, '#paypal-btn');
-     </script>
-    }
-}else{
-<p class="text-center">Compra minima de 10 USD</p>
+@if(Model.ShoppingCartTotal >5-1)
+{
+    @section Scripts 
+    {
+        <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+        <script>
+             const _total = parseFloat($("#total").val().replace(",", "."));
+             paypal.Button.render({
+                 env: 'sandbox',
+                 client: {
+                 sandbox: 'AdEOqZzYZU5B5tjiJKEGjgqaOFZ-cHrf9zKVOtZx2jFopqvlseHwMUmMJFY7tortWvxZS46_3W8GvtWh'
+             },
+                 locale: 'en_US',
+                 style: {
+                 size: 'small',
+                 color: 'gold',
+                 shape: 'pill'
+             },
+             commit: true,
+             payment: function (data, actions) {
+                 return actions.payment.create({
+                 transactions: [{
+                 amount: {
+                 total: _total,
+                 currency: 'USD'
+             }
+             }]
+             });
+             },
+             onAuthorize: function (data, actions) {
+                 return actions.payment.execute().then(function () {
+                 var url = '@Url.Action("CompleteOrder", "Order", new { })'
+                 window.location.href = url;
+             });
+             }
+             }, '#paypal-btn');
+         </script>
+     }
 }

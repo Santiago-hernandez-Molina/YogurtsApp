@@ -1,0 +1,27 @@
+@model Blog;
+
+<div class="col-md-8 offset-md-2">
+    <form method="post" class="m-2" asp-action="Delete">
+        <input type="text" asp-for="Id" hidden>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <legend class="text-center">Nuevo Producto</legend>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label asp-for="Name" class="form-label"></label>
+                <input type="text" asp-for="Name" class="form-control form-control-sm">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3 form-group">
+                <label asp-for="Description" class="form-label"></label>
+                <textarea rows="4" style="resize: none" asp-for="Description" class="form-control form-control-sm"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ImagePath" class="form-label"></label>
+            <input type="text" asp-for="ImagePath" class="form-control form-control-sm">
+            <span asp-validation-for="ImagePath" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-custom btn-category">Borrar</button>
+    </form>
+</div>

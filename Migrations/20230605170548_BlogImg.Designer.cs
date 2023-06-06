@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NutryDairyASPApplication.Data;
 
@@ -10,9 +11,11 @@ using NutryDairyASPApplication.Data;
 namespace NutryDairyASPApplication.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230605170548_BlogImg")]
+    partial class BlogImg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -238,9 +241,6 @@ namespace NutryDairyASPApplication.Migrations
                     b.Property<int>("BlogId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Paragraphs")
-                        .HasColumnType("longtext");
-
                     b.Property<string>("RelatedImagePath")
                         .HasColumnType("longtext");
 
@@ -431,6 +431,28 @@ namespace NutryDairyASPApplication.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("OrderItems");
+                });
+
+            modelBuilder.Entity("NutryDairyASPApplication.Models.Paragraph", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("ArticleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArticleId");
+
+                    b.ToTable("Paragraph");
                 });
 
             modelBuilder.Entity("NutryDairyASPApplication.Models.Product", b =>
@@ -684,6 +706,17 @@ namespace NutryDairyASPApplication.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("NutryDairyASPApplication.Models.Paragraph", b =>
+                {
+                    b.HasOne("NutryDairyASPApplication.Models.Article", "Article")
+                        .WithMany("Paragraphs")
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Article");
+                });
+
             modelBuilder.Entity("NutryDairyASPApplication.Models.Product", b =>
                 {
                     b.HasOne("NutryDairyASPApplication.Models.ProductSet", "ProductSet")
@@ -713,6 +746,11 @@ namespace NutryDairyASPApplication.Migrations
                         .IsRequired();
 
                     b.Navigation("ElaborationProcess");
+                });
+
+            modelBuilder.Entity("NutryDairyASPApplication.Models.Article", b =>
+                {
+                    b.Navigation("Paragraphs");
                 });
 
             modelBuilder.Entity("NutryDairyASPApplication.Models.Blog", b =>

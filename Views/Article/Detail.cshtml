@@ -1,0 +1,15 @@
+@model Article
+@{
+    Layout = "_Layout";
+}
+<h1 class="text-center article-title">@Model.Title</h1>
+<div class="col-md-8 offset-md-2">
+    <section class="row">
+    <article class="col-md-6">
+        <p class="article-content">@Model.Paragraphs</p>
+    </article>
+    <figure class="col m-4">
+        <img src="@Model.RelatedImagePath" alt="" class="rounded mx-auto image-article">
+    </figure>
+</section>
+</div>

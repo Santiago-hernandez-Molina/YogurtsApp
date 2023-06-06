@@ -58,7 +58,6 @@ h1.title-custom{
     background: white;
     color: var(--dark-blue);
     border-radius: 5px;
-    overflow: hidden;
 }
 
 legend{
@@ -116,11 +115,20 @@ a.card-link{
     text-decoration: none;
     color: var(--white-blue);
 }
+.btn-article{
+    background: var(--green);
+    color: white;
+    border-radius: 100px;
+}
+.btn-article:hover{
+    color: white;
+    background: lightgreen;
+}
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 @media(max-width:1024px){
     .nav-link-custom{
@@ -137,11 +145,13 @@ a.card-link{
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
+
 body {
-  margin-bottom: 60px;
-  font-family: 'Rubik', sans-serif;
+    width: 100%;
+    margin-bottom: 60px;
+    font-family: 'Rubik', sans-serif;
 }

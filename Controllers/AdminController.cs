@@ -18,13 +18,9 @@ public class AdminController : Controller
     public IActionResult Index()
     {
         AdminVM AdminVM = new AdminVM{
-            TotalProducts = _context.Products.Count()
+            TotalProducts = _context.Products.Count(),
+            TotalBlogs = _context.Blogs.Count(),
         };
         return View(AdminVM);
-    }
-    public IActionResult MetodoDeAccion()
-    {
-        // Lógica para obtener el contenido actualizado
-        return PartialView("_Div");
     }
 }
