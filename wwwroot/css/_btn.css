@@ -1,0 +1,5 @@
+.btn-bought{
+    background: var(--green);
+    border: 1px solid var(--green);
+    color: var(--white-blue);
+}

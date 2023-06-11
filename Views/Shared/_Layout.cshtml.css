@@ -32,4 +32,8 @@ a{
   white-space: nowrap;
   line-height: 60px;
 }
-
+@media(max-width:1024px){
+    .presentation-custom{
+        padding: 0;
+    }
+}

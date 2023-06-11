@@ -8,6 +8,7 @@ Layout = "_Layout";
 }
 <partial name="_TitlePartial"/>
 <div class="d-flex flex-column align-items-center" style="background: var(--strong-blue); padding: 20px;">
+<a href="javascript:history.back()" class="btn btn-sm btn-category m-2">← volver</a>
     <nav aria-label="Page navigation example">
         @Html.PagedListPager(
         (IPagedList) ViewBag.articles,

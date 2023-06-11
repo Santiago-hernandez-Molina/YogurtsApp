@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "Admin Blogs";
+ViewData["Title"] = "Admin Blogs";
 }
 
 <section class="col-md-8 offset-md-2">
@@ -10,33 +10,33 @@
     <article>
         <div class="card m-4">
             <div class="card-header">
-                Info
+                <h2 class="title">@Blog.Name</h2>
+                <a asp-action="Edit" asp-route-id="@Blog.Id" class="btn btn-custom">Editar</a>
+                <a asp-action="Delete" asp-route-id="@Blog.Id" class="btn btn-custom btn-category">Borrar</a>
             </div>
             <div class="card-body">
-                <div class="">
-                    <h5 class="card-title title">@Blog.Name</h5>
-                    <p class="card-text" style="max-height: 180px; overflow-y: auto;">@Blog.Description</p>
-                    <a asp-action="Edit" asp-route-id="@Blog.Id" class="btn btn-custom">Editar</a>
-                    <a asp-action="Delete" asp-route-id="@Blog.Id" class="btn btn-custom btn-category">Borrar</a>
+                <div class="m-2">
+                    <h4>Descripción:</h4>
+                    <p class="card-text m-4" style="max-height: 180px; overflow-y: auto;">@Blog.Description</p>
                 </div>
+                <h4 class="m-2">Articulos: </h4>
+                <a asp-controller="Article" asp-action="Create" asp-route-id="@Blog.Id" class="btn btn-sm btn-custom m-4">Crear nuevo Articulo</a>
+                <section class="d-flex flex-wrap">
+                    @foreach(var Article in Blog.Articles)
+                    {
+                    <div class="card m-2" style="width: 15rem;">
+                        <img src="@Article.RelatedImagePath" class="card-img-top" alt="@Article.Title"
+                        style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title text-center" style="height: 50px;">@Article.Title</h5>
+                            <a asp-controller="Article" asp-action="Edit" asp-route-id="@Article.Id" class="btn btn-custom">Editar</a>
+                            <a asp-controller="Article" asp-action="Delete" asp-route-id="@Article.Id" class="btn btn-custom btn-category">Borrar</a>
+                        </div>
+                    </div>
+                    }
+                </section>
             </div>
         </div>
-        <a asp-controller="Article" asp-action="Create" asp-route-id="@Blog.Id" class="btn btn-sm btn-primary m-4">Crear nuevo Articulo</a>
-        <section class="d-flex flex-wrap m-4">
-        @foreach(var Article in Blog.Articles)
-        {
-            <div class="card m-2" style="width: 15rem;">
-                <img src="@Article.RelatedImagePath" class="card-img-top" alt="@Article.Title"
-                style="height: 200px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">@Article.Title</h5>
-                    <a asp-controller="Article" asp-action="Edit" asp-route-id="@Article.Id" class="btn btn-custom">Editar</a>
-                    <a asp-controller="Article" asp-action="Delete" asp-route-id="@Article.Id" class="btn btn-custom btn-category">Editar</a>
-                </div>
-            </div>
-        }
-        </section>
-        <hr />
     </article>
     }
 </section>

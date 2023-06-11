@@ -1,11 +1,8 @@
-using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NutryDairyASPApplication.Data;
 using NutryDairyASPApplication.Models;
 using NutryDairyASPApplication.Data.Static;
-using FluentFTP;
-using Microsoft.EntityFrameworkCore;
 using X.PagedList;
 
 namespace NutryDairyASPApplication.Controllers;
@@ -133,7 +130,7 @@ public class ArticleController : Controller
 
     [HttpPost]
     [Authorize(Roles = UserRoles.Admin)]
-    public IActionResult Delete(int id, [Bind("Title, RelatedImagePath, BlogId, Paragraphs")]Article data)
+    public IActionResult Delete(int id, [Bind("Id, Title, RelatedImagePath, BlogId, Paragraphs")]Article data)
     {
         if (!ModelState.IsValid)
         {

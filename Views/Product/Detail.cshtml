@@ -9,32 +9,32 @@ Layout = "_Layout";
 }
 
 <section class="container">
-    <div class="row align-items-center justify-content-center">
-        <div class="col">
-            <h2>
-                <a href="javascript:history.back()" class="btn btn-before"><i class="bi bi-arrow-left-short"></i></a>
-                @Model.Name
-            </h2>
-            <img src=@Model.ImagePath alt=@Model.Name>
-        </div>
-        <div class="col">
-            <p class="detail-p">@Model.Description</p>
-            <div class="btn-group">
-            @if (SignInManager.IsSignedIn(User))
-            {
-                <a  asp-controller="Order"
-                    asp-action="AddItemToShoppingCart"
-                    asp-route-id="@Model.Id"
-                    class="btn btn-success btn-sm text-white"
-                    style="font-style: normal;">
-                    <i class="bi bi-cart-plus">Añadir al carrito</i>
-                </a>
-            }
-            <a class="btn btn-light btn-sm"
-               style="font-style: italic;">
-                Ingredientes
-            </a>
+    <div class="col-md-8 p-4 offset-md-2 text-center">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>@Model.Name</h2>
+                <img src=@Model.ImagePath alt=@Model.Name style="background: white;">
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <a class="btn col m-2 btn-dark btn-sm">
+                        Ingredientes
+                    </a>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                    <a  asp-controller="Order"
+                        asp-action="AddItemToShoppingCart"
+                        asp-route-id="@Model.Id"
+                        class="btn col m-2 btn-success btn-sm text-white"
+                        style="font-style: normal;">
+                        <i class="bi bi-cart-plus"> $ @Math.Round(Model.Price,2)</i>
+                    </a>
+                    }
+                </div>
+                <p class="detail-p title" style="font-size: 18px;">Cantidad: @Model.Quantity g</p>
+                <p class="detail-p">@Model.Description</p>
             </div>
         </div>
+    <a href="javascript:history.back()" class="btn btn-sm btn-category m-4">← volver</a>
     </div>
 </section>

@@ -1,10 +1,8 @@
-using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NutryDairyASPApplication.Data;
 using NutryDairyASPApplication.Models;
 using NutryDairyASPApplication.Data.Static;
-using FluentFTP;
 using Microsoft.EntityFrameworkCore;
 using X.PagedList;
 
@@ -166,7 +164,7 @@ public class BlogController : Controller
             _context.SaveChanges();
             return RedirectToAction(nameof(AdminIndex));
         }
-        return View("Delete",Blog);
+        return View(Blog);
     }
 
 }
