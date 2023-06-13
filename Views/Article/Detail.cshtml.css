@@ -2,8 +2,8 @@
     font-weight: bold;
 }
 .image-article{
-    height: 390px;
-    width:800px;
+    height: 290px;
+    width:700px;
     object-fit: cover;
 }
 .article-content{
@@ -11,4 +11,10 @@
     text-align: justify;
     padding: 20px;
     width: 100%;
+}
+@media (max-width:900px) {
+    .image-article{
+        height: 190px;
+        width: 70%;
+    }
 }

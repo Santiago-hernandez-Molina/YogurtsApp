@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NutryDairyASPApplication.Data;
 using NutryDairyASPApplication.Models;
 using NutryDairyASPApplication.ViewModels;
@@ -20,9 +21,13 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         var data = _context.Products.Take(3).OrderBy(p => p.Name).ToList();
-        HomeVM homevm = new HomeVM()
+        var blogs = _context.Blogs
+            .Include(b => b.Articles.Take(3))
+            .ToList();
+        HomeVM homevm = new HomeVM
         {
-            products = data
+            products = data,
+            blogs = blogs
         };
         return View(homevm);
     }

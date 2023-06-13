@@ -47,14 +47,37 @@ ViewData["Title"] = "NutryDairy";
     <a type="button" class='btn btn-custom btn-card'
         asp-controller="Product" asp-action="Index"> Ver más</a>
 </div>
+<div class="blog-section">
+    @foreach (var blog in Model.blogs)
+    {
+        @if (blog.Articles.Count != 0)
+        {
+            <div>
+                <h3 class="text-center title m-2">@blog.Name</h3>
+                <section class=" cards-article-container content">
+                    @foreach (var Article in blog.Articles)
+                    {
+                        <div class="article-card m-2">
+                            <img src="@Article.RelatedImagePath" alt="">
+                            <div class="row card-article-content m-2">
+                                <h3 class="title col">@Article.Title</h3>
+                                <a asp-controller="Article" asp-action="Detail" asp-route-id="@Article.Id" class="btn btn-article col">Ver</a>
+                            </div>
+                        </div>
+                    }
+                </section>
+            </div>
+        }
+    }
+</div>
 <div class="row m-4">
     <div class="col-md-6 text-center">
         <h3 class="title">¿Quiénes somos?</h3>
-        <p class="p-4 text-white" style="background: var(--strong-blue); border-radius: 5px;" >
-            GRAN VALLE, empresa Tunjana,
-            productora de derivados lácteos funcionales con cultivos probióticos🥛,
-            con deliciosos sabores y acompañados con trozos de fruta natural 🍓 … 
-            perfectos para el fortalecimiento de nuestras defensas.
+        <p class="p-4 text-white m-2" style="background: var(--strong-blue); border-radius: 5px;" >
+        GRAN VALLE, empresa Tunjana,
+        productora de derivados lácteos funcionales con cultivos probióticos🥛,
+        con deliciosos sabores y acompañados con trozos de fruta natural 🍓 … 
+        perfectos para el fortalecimiento de nuestras defensas.
         </p>
     </div>
     <div class="col-md-6 text-center">

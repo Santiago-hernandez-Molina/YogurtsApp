@@ -38,4 +38,7 @@
     .article-card:hover{
         width: auto;
     }
+    .card-article-content{
+        width: 95%;
+    }
 }

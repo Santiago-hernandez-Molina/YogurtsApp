@@ -18,6 +18,7 @@ a{
     background-attachment: fixed;
     background-size: cover;
     background-position:bottom;
+    margin: 0;
 }
 .container{
     width: 100%;
