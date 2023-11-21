@@ -174,7 +174,7 @@ namespace NutryDairyASPApplication.Data
                             {
                                 Title = "Gandores de concurso",
                                 RelatedImagePath = "",
-                                BlogId = 7,
+                                BlogId = 2,
                                 Paragraphs = "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
                             }
                             });
