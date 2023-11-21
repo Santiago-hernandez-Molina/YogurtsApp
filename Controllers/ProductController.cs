@@ -78,7 +78,7 @@ public class ProductController : Controller
     if (data.Archivo != null && data.Archivo.Length > 0 )
     {
       var saveFiles = new SaveFiles();
-      data.ImagePath = saveFiles.SaveImage(data.Archivo);
+      data.ImagePath = saveFiles.SaveImageToBase64(data.Archivo);
     }else
     {
       data.ImagePath = "";
@@ -142,7 +142,7 @@ public class ProductController : Controller
       if (data.Archivo != null && data.Archivo.Length > 0 )
       {
         var saveFiles = new SaveFiles();
-        data.ImagePath = saveFiles.SaveImage(data.Archivo);
+        data.ImagePath = saveFiles.SaveImageToBase64(data.Archivo);
       }
     }
     try{
@@ -177,7 +177,8 @@ public class ProductController : Controller
     {
       _context.Products.Remove(Product);
       _context.SaveChanges();
-      return RedirectToAction(nameof(Index),"Admin");
+      //return RedirectToAction(nameof(Index),"Admin");
+      return RedirectToAction(nameof(AdminIndex));
     }
     return View("Delete",Product);
   }

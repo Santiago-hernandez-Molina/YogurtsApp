@@ -36,5 +36,22 @@ namespace NutryDairyASPApplication.Utils
       }
       return "";
     }
+
+    public string SaveImageToBase64(IFormFile file)
+    {
+      if (this.allowedContentTypes.Contains(file.ContentType))
+      {
+        using (var ms = new MemoryStream())
+        {
+          file.CopyTo(ms);
+          var fileBytes = ms.ToArray();
+          return "data:jpeg;base64," + Convert.ToBase64String(fileBytes);
+        }
+      }
+      else
+      {
+        return "";
+      }
+    }
   }
 }
