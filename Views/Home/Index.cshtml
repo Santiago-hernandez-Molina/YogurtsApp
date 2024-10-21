@@ -1,91 +1,88 @@
 ﻿@model NutryDairyASPApplication.ViewModels.HomeVM
-
 @{
-ViewData["Title"] = "NutryDairy";
+    ViewData["Title"] = "NutryDairy";
 }
 <partial name="_TitlePartial"/>
 <div class="presentation">
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item w-100 active">
-                <img src="https://cdn.pixabay.com/photo/2016/07/31/20/03/yogurt-1559869_1280.jpg" class="d-block" alt="...">
-            </div>
-            <div class="carousel-item w-100">
-                <img src="https://cdn.pixabay.com/photo/2016/07/04/20/26/currants-1497328_1280.jpg" class="d-block" alt="...">
-            </div>
-            <div class="carousel-item w-100">
-                <img src="https://cdn.pixabay.com/photo/2023/04/14/14/30/oatmeal-7925231_1280.jpg" class="d-block" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
+    <div class="carousel-inner">
+      <div class="carousel-item w-100 active">
+        <img src="https://cdn.pixabay.com/photo/2016/07/31/20/03/yogurt-1559869_1280.jpg" class="d-block" alt="...">
+      </div>
+      <div class="carousel-item w-100">
+        <img src="https://cdn.pixabay.com/photo/2016/07/04/20/26/currants-1497328_1280.jpg" class="d-block" alt="...">
+      </div>
+      <div class="carousel-item w-100">
+        <img src="https://cdn.pixabay.com/photo/2023/04/14/14/30/oatmeal-7925231_1280.jpg" class="d-block" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 </div>
 <div class="principal">
-    <div class="cards-container-custom">
-        @foreach (var Product in Model.products)
-        {
-        <a asp-controller="Product" asp-action="Detail" asp-route-id="@Product.Id" style="text-decoration: none;" >
-            <div class="card-custom">
-                <img src="@Product.ImagePath" alt="@Product.Name"/>
-                <h5>@Product.Name</h5>
-            </div>
-        </a>
-        }
-    </div>
-    <a type="button" class='btn btn-custom btn-card'
+  <div class="cards-container-custom">
+    @foreach (var Product in Model.products)
+    {
+    <a asp-controller="Product" asp-action="Detail" asp-route-id="@Product.Id" style="text-decoration: none;" >
+      <div class="card-custom">
+        <img src="@Product.ImagePath" alt="@Product.Name"/>
+        <h5>@Product.Name</h5>
+      </div>
+    </a>
+    }
+  </div>
+  <a type="button" class='btn btn-custom btn-card'
         asp-controller="Product" asp-action="Index"> Ver más</a>
 </div>
 <div class="blog-section">
-    @foreach (var blog in Model.blogs)
-    {
-        @if (blog.Articles.Count != 0)
-        {
-            <div>
-                <h3 class="text-center title m-2">@blog.Name</h3>
-                <section class=" cards-article-container content">
-                    @foreach (var Article in blog.Articles)
-                    {
-                        <div class="article-card m-2">
-                            <img src="@Article.RelatedImagePath" alt="">
-                            <div class="row card-article-content m-2">
-                                <h3 class="title col">@Article.Title</h3>
-                                <a asp-controller="Article" asp-action="Detail" asp-route-id="@Article.Id" class="btn btn-article col">Ver</a>
-                            </div>
-                        </div>
-                    }
-                </section>
-            </div>
-        }
-    }
+  @foreach (var blog in Model.blogs)
+  {
+  @if (blog.Articles.Count != 0)
+  {
+  <div>
+    <h3 class="text-center title m-2">@blog.Name</h3>
+    <section class=" cards-article-container content">
+      @foreach (var Article in blog.Articles)
+      {
+      <div class="article-card m-2">
+        <img src="@Article.RelatedImagePath" alt="">
+        <div class="row card-article-content m-2">
+          <h3 class="title col">@Article.Title</h3>
+          <a asp-controller="Article" asp-action="Detail" asp-route-id="@Article.Id" class="btn btn-article col">Ver</a>
+        </div>
+      </div>
+      }
+    </section>
+  </div>
+  }
+  }
 </div>
 <div class="row m-4">
-    <div class="col-md-6 text-center">
-        <h3 class="title">¿Quiénes somos?</h3>
-        <p class="p-4 text-white m-2" style="background: var(--strong-blue); border-radius: 5px;" >
-        GRAN VALLE, empresa Tunjana,
-        productora de derivados lácteos funcionales con cultivos probióticos🥛,
-        con deliciosos sabores y acompañados con trozos de fruta natural 🍓 … 
-        perfectos para el fortalecimiento de nuestras defensas.
-        </p>
+  <div class="col-md-6 text-center">
+    <h3 class="title">¿Quiénes somos?</h3>
+    <p class="p-4 text-white m-2" style="background: var(--strong-blue); border-radius: 5px;" >
+      Yogurt Enterprise,
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, modi itaque minima totam fugiat est earum quos et consequuntur, debitis expedita sed libero placeat tempora similique porro fugit! Ipsum, libero?
+    </p>
+  </div>
+  <div class="col-md-6 text-center">
+    <h3 class="title">Redes Sociales</h3>
+    <div class="row p-4">
+      <a href="" class="btn btn-sm btn-dark m-2"><i class="bi bi-whatsapp"></i> Whatsapp</a>
+      <a href="" class="btn btn-sm btn-dark m-2"><i class="bi bi-facebook"></i> Facebook</a>
+      <a href="" class="btn btn-sm btn-dark m-2"><i class="bi bi-instagram"></i> Instagram</a>
     </div>
-    <div class="col-md-6 text-center">
-        <h3 class="title">Redes Sociales</h3>
-        <div class="row p-4">
-            <a href="" class="btn btn-sm btn-dark m-2"><i class="bi bi-whatsapp"></i> Whatsapp</a>
-            <a href="" class="btn btn-sm btn-dark m-2"><i class="bi bi-facebook"></i> Facebook</a>
-            <a href="" class="btn btn-sm btn-dark m-2"><i class="bi bi-instagram"></i> Instagram</a>
-        </div>
-    </div>
+  </div>
 </div>

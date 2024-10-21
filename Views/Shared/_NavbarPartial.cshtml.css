@@ -14,7 +14,7 @@
 .nav-section{
     display: grid;
     grid-template-rows: 40% auto;
-    width: 82%;
+    width: 93vw;
     border-top-left-radius: 20px;
 }
 .logo-custom{
@@ -31,6 +31,7 @@
     object-fit: contain;
     background: white;
     border-radius: 10px;
+    border: 2px solid var(--strong-blue)
 }
 .nav-sep{
     border-bottom: 2px solid var(--strong-blue) ;
@@ -109,7 +110,7 @@
         width: 13vh;
         max-width: 57px;
         position: absolute;
-        top: 0.5vh;
+        top: 0.05vh;
         right: 45%;
     }
     .logo-custom>img{
